@@ -13,6 +13,7 @@ public class characterMovement : MonoBehaviour
     private const float maxDistance = 10;
 
     private bool sprint = false;
+    private bool isJummping = false;
     private RaycastHit hit;
 
     private Vector3 _currentMovement;
@@ -21,6 +22,21 @@ public class characterMovement : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>(); 
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(feetPivot.position, new Vector3 (feetPivot.position.x, feetPivot.position.y + minJumpDistance, feetPivot.position.z));
+    }
+    private void FixedUpdate()
+    {
+        _rigidbody.velocity = _currentMovement * speed + Vector3.up * _rigidbody.velocity.y;
+        if (isJummping && Physics.Raycast(feetPivot.position, Vector3.down, out hit, maxDistance) && hit.distance <= minJumpDistance)
+        {
+            _rigidbody.AddForce(transform.up * forceJump, ForceMode.Impulse);
+            isJummping = false;
+        }
     }
 
     private void Update()
@@ -34,7 +50,7 @@ public class characterMovement : MonoBehaviour
             speed = 10;
         }
 
-        transform.Translate(speed * Time.deltaTime * _currentMovement);
+        //transform.Translate(speed * Time.deltaTime * _currentMovement);
 
     }
     public void OnMove(InputValue input)
@@ -43,13 +59,9 @@ public class characterMovement : MonoBehaviour
         _currentMovement = new Vector3(movement.x, _currentMovement.y, movement.y);
     }
 
-    public void OnJump()
+    public void OnJump(InputValue input)
     {
-        if (Physics.Raycast(feetPivot.position, Vector3.down, out hit, maxDistance) && hit.distance <= minJumpDistance)
-        {
-            Debug.Log("Jump!");
-            _rigidbody.AddForce(transform.up * forceJump, ForceMode.Impulse);
-        }
+        isJummping = input.isPressed;
     }
 
     public void OnSprint(InputValue input)
