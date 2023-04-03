@@ -173,9 +173,27 @@
             "id": "df3c7c0d-6ff3-43b1-90ca-3c70085a46e4",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Selecction",
                     "type": "Button",
                     "id": "c6f21b5b-159c-4779-85a0-b559b4a4f3bc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "57f81f20-b748-4669-b850-e9cea2ddefd5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "9e7f86d3-8ee9-4ce9-b6ae-f9c4427fccc3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -185,14 +203,102 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "34f44adb-357d-44e2-bd15-055a79904b4f",
-                    "path": "",
+                    "id": "e6b9c1ae-0180-4fb1-b02c-f48a359c568c",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Enter",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f5e4630-98fc-4335-8b73-cbaa452fbfde",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "adddeda0-b4d1-4df6-b9b2-d6b4510946eb",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WS",
+                    "id": "e303581f-aa4c-494a-bada-5dd0a5a4f752",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selecction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "1e49f56f-2398-4a91-acf4-5896772075d4",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selecction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "a9860c30-e9f8-4290-ab58-6a1d1f0558e4",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selecction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Arrows",
+                    "id": "4ff3f607-eb37-4b80-bd88-c950aab0ad46",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selecction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "0e8ef473-f66f-4c42-859b-b82739e9e7c3",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selecction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "13d72db0-2c14-4d5f-99d4-70e79f2aade5",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Selecction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
