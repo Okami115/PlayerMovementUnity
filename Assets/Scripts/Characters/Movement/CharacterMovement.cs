@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Class that enables a character to be moved
-/// </summary>
 public class CharacterMovement : MonoBehaviour
 {
     private const int MaxFloorDistance = 10;
@@ -39,9 +36,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!rigidBody)
         {
-            //<color=xxx> nos permite colorear una string
-            //mas data sobre las string con $ (string interpolation):
-            //https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/tokens/interpolated
             Debug.LogError($"<color=grey>{name}:</color> {nameof(rigidBody)} is null!" +
                            $"\n<color=red>Disabling this component to avoid NullReferences!</color>");
             enabled = false;
@@ -58,18 +52,13 @@ public class CharacterMovement : MonoBehaviour
         rigidBody.velocity = _currentMovement * movementSpeed + Vector3.up * rigidBody.velocity.y;
     }
 
-    /// <summary>
-    /// moves the character by walking
-    /// </summary>
     public void OnMove(InputValue context)
     {
         var movementInput = context.Get<Vector2>();
         _currentMovement = new Vector3(movementInput.x, 0, movementInput.y);
     }
 
-    /// <summary>
-    /// Makes the character jump
-    /// </summary>
+
     public void OnJump()
     {
         if (_jumpCoroutine != null)
@@ -77,22 +66,13 @@ public class CharacterMovement : MonoBehaviour
         _jumpCoroutine = StartCoroutine(JumpCoroutine());
     }
 
-    /// <summary>
-    /// Runs the characters Jump as soon as it's close to the ground and in the fixedUpdate period.
-    /// </summary>
-    /// <returns></returns>
+
     private IEnumerator JumpCoroutine()
     {
-        //Siempre hacer sanity checks. Hoy en dia, las CPUs son lo suficientemente avanazadas para no verse
-        //gravemente afectadas por los sanity checks o nullChecks
         if (!feetPivot)
             yield break;
 
-        //Podemos utilizar for en reemplazo del While.
-        //Ambos funcionan de la misma manera y su unica diferencia es como se ven.
-        
-        //var timeElapsed = 0.0f;
-        //while (timeElapsed <= jumpBufferTime)
+
         for(var timeElapsed = 0.0f; timeElapsed <= jumpBufferTime; timeElapsed += Time.fixedDeltaTime)
         {
             yield return new WaitForFixedUpdate();
@@ -130,16 +110,8 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Checks if the character is able to jump when in a certain position.
-    /// </summary>
-    /// <param name="currentFeetPosition"></param>
-    /// <returns></returns>
     private bool CanJumpInPosition(Vector3 currentFeetPosition)
     {
-        //La variable hit puede ser presentada dirertamente en la llamada al metodo Raycast
-        //La keyword out significa que le damos acceso al metodo para asignarle un valor a nuestra variable.
-        //Ojo! El valor con el que termina podria ser nulo en otros metodos, pero en el caso del raycast, nunca sera asi
         return Physics.Raycast(currentFeetPosition, Vector3.down, out var hit, MaxFloorDistance)
                && hit.distance <= minJumpDistance;
     }
