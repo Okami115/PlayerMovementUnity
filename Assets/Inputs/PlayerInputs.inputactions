@@ -21,11 +21,11 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Sprint",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "eaccc77c-046a-4f7e-93e3-d318e95f1425",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "Camera",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "362f24f4-e094-4a9e-9156-7af0e923ece4",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -176,59 +176,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "89e109bd-6796-420d-911f-89c14a2cdd13",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "adc78dc0-271c-45c1-8fe2-63e1bc8d2965",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Camera",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "7ffc217d-890a-4ad9-814f-969cdc2a70b6",
-                    "path": "<Mouse>/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "c8143429-03b6-459a-84ee-962f8e0f8ee2",
-                    "path": "<Mouse>/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "ee7e007b-bd1b-4f96-a509-012f49d5a914",
-                    "path": "<Mouse>/delta/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "171a7574-3c65-458f-8e11-4ea5b6351abf",
-                    "path": "<Mouse>/delta/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },

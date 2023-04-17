@@ -15,4 +15,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Destroy.unity
     guid: 6adbdde53fcf9af47a1416d61aa20c01
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: e40f9406a9b51b6479c95846cea7a397, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: a826bff33d5bec74c94e8da8c002cadd, type: 2}
