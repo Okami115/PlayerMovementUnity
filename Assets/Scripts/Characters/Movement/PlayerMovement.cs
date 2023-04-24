@@ -21,15 +21,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCooldown;
-    [SerializeField] private float airMultiplier;
+    [SerializeField] private float airMultiplier = 10;
     [SerializeField] private bool isJumping;
     [SerializeField] private bool readyToJump = true;
 
     [Header("Ground variables")]
     [SerializeField] private float playerheight;
     [SerializeField] private LayerMask ground;
-    [SerializeField] private float groundDrag;
-    [SerializeField] private float minDistanceGround = 0.1f;
+    [SerializeField] private float groundDrag = 5;
+    [SerializeField] private float maxDistanceGround = 0.5f;
     [SerializeField] private bool isGrounded;
 
     void Start()
@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
     public void OnSprint(InputValue input)
     {
         isSprinting = input.isPressed;
-        Debug.Log($"SI.");
     }
 
     private void MovePlayer()
@@ -76,11 +75,19 @@ public class PlayerMovement : MonoBehaviour
     private void JumpPlayer()
     {
         RaycastHit hit;
-        isGrounded = Physics.Raycast(Pivot.position, Vector3.down, out hit, ground);
-        if (isGrounded) { _rigidBody.drag = groundDrag; }
-        else { _rigidBody.drag = 0; }
+        isGrounded = Physics.Raycast(Pivot.position, Vector3.down, out hit, maxDistanceGround ,ground);
+        if (isGrounded) 
+        { 
+            _rigidBody.drag = groundDrag; 
+        
+        }
+        else 
+        {
+            _rigidBody.AddForce(Vector3.down * airMultiplier, ForceMode.Force);
+            _rigidBody.drag = 0;
+        }
 
-        if (isJumping && isGrounded && hit.distance <= minDistanceGround)
+        if (isJumping && isGrounded && hit.distance <= maxDistanceGround)
         {
             _rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumping = false;
@@ -88,15 +95,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void speedControl()
     {
-        if (isGrounded && isSprinting)
-        {
-            moveSpeed = sprintSpeed;
-            isSprinting = false;
-        }
-        else if (isGrounded)
-        {
-            moveSpeed = walkSpeed;
-        }
+        moveSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
         Vector3 flatVel = new Vector3(_rigidBody.velocity.x, 0f, _rigidBody.velocity.z);
 
@@ -110,5 +109,10 @@ public class PlayerMovement : MonoBehaviour
     private void jumpReset()
     {
         isJumping = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(Pivot.position, Vector3.down * maxDistanceGround);
     }
 }
