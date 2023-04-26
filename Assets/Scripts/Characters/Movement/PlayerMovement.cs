@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        transform.rotation = orientation.rotation;
         speedControl();
     }
 
