@@ -64,6 +64,42 @@ namespace Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Value"",
+                    ""id"": ""ceb6dc37-e7be-4807-bda6-c022d0f1a677"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""63937264-6fc2-409c-b63d-698013ef1516"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c79b4cf-f8ae-46ad-871e-ffe6c8736a40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseCanvas"",
+                    ""type"": ""Value"",
+                    ""id"": ""e520537e-a5c0-488f-a163-2f7669b3c265"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -207,6 +243,50 @@ namespace Inputs
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a59f45f4-0b88-43d8-ab1b-571c889593c0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd87942e-0e6c-4e73-94af-d739bda272c8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2962b3f-2a96-49ef-a557-e79b7c158f22"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b628775f-3eb8-42df-8e84-4079a04637a6"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseCanvas"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -355,6 +435,10 @@ namespace Inputs
             m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
             m_World_Sprint = m_World.FindAction("Sprint", throwIfNotFound: true);
             m_World_Camera = m_World.FindAction("Camera", throwIfNotFound: true);
+            m_World_Shoot = m_World.FindAction("Shoot", throwIfNotFound: true);
+            m_World_Aim = m_World.FindAction("Aim", throwIfNotFound: true);
+            m_World_Reload = m_World.FindAction("Reload", throwIfNotFound: true);
+            m_World_CloseCanvas = m_World.FindAction("CloseCanvas", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selecction = m_Menu.FindAction("Selecction", throwIfNotFound: true);
@@ -425,6 +509,10 @@ namespace Inputs
         private readonly InputAction m_World_Jump;
         private readonly InputAction m_World_Sprint;
         private readonly InputAction m_World_Camera;
+        private readonly InputAction m_World_Shoot;
+        private readonly InputAction m_World_Aim;
+        private readonly InputAction m_World_Reload;
+        private readonly InputAction m_World_CloseCanvas;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -433,6 +521,10 @@ namespace Inputs
             public InputAction @Jump => m_Wrapper.m_World_Jump;
             public InputAction @Sprint => m_Wrapper.m_World_Sprint;
             public InputAction @Camera => m_Wrapper.m_World_Camera;
+            public InputAction @Shoot => m_Wrapper.m_World_Shoot;
+            public InputAction @Aim => m_Wrapper.m_World_Aim;
+            public InputAction @Reload => m_Wrapper.m_World_Reload;
+            public InputAction @CloseCanvas => m_Wrapper.m_World_CloseCanvas;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -454,6 +546,18 @@ namespace Inputs
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
+                @CloseCanvas.started += instance.OnCloseCanvas;
+                @CloseCanvas.performed += instance.OnCloseCanvas;
+                @CloseCanvas.canceled += instance.OnCloseCanvas;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -470,6 +574,18 @@ namespace Inputs
                 @Camera.started -= instance.OnCamera;
                 @Camera.performed -= instance.OnCamera;
                 @Camera.canceled -= instance.OnCamera;
+                @Shoot.started -= instance.OnShoot;
+                @Shoot.performed -= instance.OnShoot;
+                @Shoot.canceled -= instance.OnShoot;
+                @Aim.started -= instance.OnAim;
+                @Aim.performed -= instance.OnAim;
+                @Aim.canceled -= instance.OnAim;
+                @Reload.started -= instance.OnReload;
+                @Reload.performed -= instance.OnReload;
+                @Reload.canceled -= instance.OnReload;
+                @CloseCanvas.started -= instance.OnCloseCanvas;
+                @CloseCanvas.performed -= instance.OnCloseCanvas;
+                @CloseCanvas.canceled -= instance.OnCloseCanvas;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -555,6 +671,10 @@ namespace Inputs
             void OnJump(InputAction.CallbackContext context);
             void OnSprint(InputAction.CallbackContext context);
             void OnCamera(InputAction.CallbackContext context);
+            void OnShoot(InputAction.CallbackContext context);
+            void OnAim(InputAction.CallbackContext context);
+            void OnReload(InputAction.CallbackContext context);
+            void OnCloseCanvas(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

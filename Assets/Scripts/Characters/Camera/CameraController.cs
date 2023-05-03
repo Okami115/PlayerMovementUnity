@@ -1,10 +1,5 @@
 using Inputs;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.iOS;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,6 +7,7 @@ public class CameraController : MonoBehaviour
     private @PlayerInputs controls;
 
     [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private Canvas text;
     private Vector2 mouseLooK;
 
     private float xRotation = 0;
@@ -41,7 +37,6 @@ public class CameraController : MonoBehaviour
     {
         OnCamera();
     }
-
 
     public void OnCamera()
     {
