@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Destroy.unity
     guid: 6adbdde53fcf9af47a1416d61aa20c01
+  - enabled: 1
+    path: Assets/Scenes/SelectLanguage.unity
+    guid: ae975f1c853029d4983cedf30dbd7fb6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a826bff33d5bec74c94e8da8c002cadd, type: 2}
