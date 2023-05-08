@@ -72,7 +72,10 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         direction = orientation.forward * inputVec2.y + orientation.right * inputVec2.x;
-        //hit.collider = direction;
+        if(Vector3.Project(direction, hit.normal) != Vector3.zero)
+        {
+            direction -=Vector3.Project(direction.normalized, hit.normal);
+        }
         _rigidBody.AddForce(direction.normalized * moveSpeed * 10f, ForceMode.Force);
     }
     private void JumpPlayer()
@@ -125,5 +128,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(Pivot.position, Vector3.down * maxDistanceGround);
+        Gizmos.DrawRay(Pivot.position, direction.normalized);
     }
 }

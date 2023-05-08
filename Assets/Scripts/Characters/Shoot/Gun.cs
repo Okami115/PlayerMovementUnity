@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     {
         if(!canShoot)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
         else
         {
@@ -26,8 +26,4 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void OnSprint(InputValue input)
-    {
-        canShoot = !input.isPressed;
-    }
 }
