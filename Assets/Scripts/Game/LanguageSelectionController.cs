@@ -8,15 +8,10 @@ public class LanguageSelectionController : MonoBehaviour
 
     [SerializeField] int indexScene;
     [SerializeField] int indexLanguageScene;
-    void Start()
+    void AWake()
     {
-        //PlayerPrefs.SetString("Language", "ES");
-    }
-
-    void Update()
-    {
-        if(!PlayerPrefs.HasKey("Language"))
-        { 
+        if (!PlayerPrefs.HasKey("Language"))
+        {
             Debug.LogError($"No language Selected");
             SceneManager.LoadScene(indexLanguageScene);
         }
@@ -25,5 +20,8 @@ public class LanguageSelectionController : MonoBehaviour
             Debug.Log($"{PlayerPrefs.GetString("Language")}");
             SceneManager.LoadScene(indexScene);
         }
+
     }
+
+
 }

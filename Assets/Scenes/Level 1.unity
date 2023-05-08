@@ -236,9 +236,13 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  stairs:
+    serializedVersion: 2
+    m_Bits: 128
   groundDrag: 5
-  maxDistanceGround: 0.5
+  maxDistanceGround: 0.6
   isGrounded: 0
+  inStairs: 0
 --- !u!114 &25560298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -842,7 +846,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 63
+    m_Bits: 191
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2044,6 +2048,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3267872306042536128, guid: dc12a07994768464fa83c2eeb6203d25, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 1575ae37184fc6d40aced095dd04e97a, type: 2}
     - target: {fileID: 3961030731082054306, guid: dc12a07994768464fa83c2eeb6203d25, type: 3}
       propertyPath: m_Layer
       value: 3

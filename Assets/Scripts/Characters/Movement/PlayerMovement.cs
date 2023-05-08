@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed = 10f;
     [SerializeField] private float sprintSpeed = 30f;
     [SerializeField] private bool isSprinting = false;
+    private RaycastHit hit;
     private Vector2 inputVec2;
     private Vector3 direction;
 
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground variables")]
     [SerializeField] private float playerheight;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private LayerMask stairs;
     [SerializeField] private float groundDrag = 5;
     [SerializeField] private float maxDistanceGround = 0.5f;
     [SerializeField] private bool isGrounded;
@@ -70,19 +72,19 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         direction = orientation.forward * inputVec2.y + orientation.right * inputVec2.x;
-
+        //hit.collider = direction;
         _rigidBody.AddForce(direction.normalized * moveSpeed * 10f, ForceMode.Force);
     }
     private void JumpPlayer()
     {
-        RaycastHit hit;
-        isGrounded = Physics.Raycast(Pivot.position, Vector3.down, out hit, maxDistanceGround ,ground);
-        if (isGrounded) 
-        { 
-            _rigidBody.drag = groundDrag; 
         
+        isGrounded = IsFloored(out hit, ground);
+        if (isGrounded)
+        {
+            _rigidBody.drag = groundDrag;
+
         }
-        else 
+        else
         {
             _rigidBody.AddForce(Vector3.down * airMultiplier, ForceMode.Force);
             _rigidBody.drag = 0;
@@ -93,7 +95,15 @@ public class PlayerMovement : MonoBehaviour
             _rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumping = false;
         }
+
+
     }
+
+    private bool IsFloored(out RaycastHit hit, int layerMask)
+    {
+        return Physics.Raycast(Pivot.position, Vector3.down, out hit, maxDistanceGround, layerMask);
+    }
+
     private void speedControl()
     {
         moveSpeed = isSprinting ? sprintSpeed : walkSpeed;

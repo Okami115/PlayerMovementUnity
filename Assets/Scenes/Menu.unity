@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8852824364579609107, guid: e35e4cc5c4d5b2a47a637fed1c43f655, type: 3}
       propertyPath: indexLanguageScene
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8852824364579609108, guid: e35e4cc5c4d5b2a47a637fed1c43f655, type: 3}
       propertyPath: m_RootOrder
@@ -353,7 +353,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d94409bc4684e4885ff6a2d70aefa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level1BuildIndex: 0
+  sceneIndex: 1
 --- !u!4 &730779131
 Transform:
   m_ObjectHideFlags: 0
@@ -1485,7 +1485,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1949,7 +1949,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

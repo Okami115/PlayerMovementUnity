@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Destroy.unity
     guid: 6adbdde53fcf9af47a1416d61aa20c01
   - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 8aa67c710d752934a8d41f1cc74615d0
+  - enabled: 1
     path: Assets/Scenes/SelectLanguage.unity
     guid: ae975f1c853029d4983cedf30dbd7fb6
   m_configObjects:

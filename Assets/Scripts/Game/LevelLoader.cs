@@ -5,12 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] public int level1BuildIndex = 1;
+    [SerializeField] private int sceneIndex = 1;
 
     [ContextMenu("Load Level 1")]
     public void LoadLevel1(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
+
+        if(buildIndex != -1)
+        {
+
+            SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
+        }
+        else
+        {
+           //exit aplication
+        }
     }
 
     [ContextMenu("Load Level 1", true)]
@@ -24,7 +33,7 @@ public class LevelLoader : MonoBehaviour
 
     private void UnloadScene() 
     {
-        SceneManager.UnloadSceneAsync(level1BuildIndex);
+        SceneManager.UnloadSceneAsync(sceneIndex);
     }
 
 
