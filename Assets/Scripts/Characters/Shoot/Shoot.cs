@@ -15,10 +15,14 @@ public class Shoot : MonoBehaviour
 
     [SerializeField] private bool isShooting = false;
 
+    [SerializeField] private int bulletsInMagazine;
+    [SerializeField] private int maxBulletsInMagazine = 6;
+
+
 
     void Update()
     {
-        if(Time.time > shootRateTime && isShooting)
+        if(Time.time > shootRateTime && isShooting && bulletsInMagazine > 0)
         {
             GameObject newBullet;
 
@@ -28,6 +32,7 @@ public class Shoot : MonoBehaviour
 
             shootRateTime = Time.time + shootRate;
 
+            bulletsInMagazine--;
 
             Destroy(newBullet, 4);
         }
@@ -37,7 +42,10 @@ public class Shoot : MonoBehaviour
     public void OnShoot(InputValue input)
     {
         isShooting = input.isPressed;
+    }
 
-        
+    public void OnReload()
+    {
+        bulletsInMagazine = maxBulletsInMagazine;
     }
 }

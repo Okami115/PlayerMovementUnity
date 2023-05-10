@@ -36,7 +36,7 @@ public class ShootRaycast : MonoBehaviour
             {
                 if(hit.transform.CompareTag("Enemy"))
                 {
-                    Debug.Log("Impacto");
+                    hit.transform.GetComponent<Enemy>().GetDamage(2);
                 }
             }
 
