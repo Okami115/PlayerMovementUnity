@@ -11,14 +11,17 @@ public class ShootRaycast : MonoBehaviour
 
     private bool isShooting;
 
-    [SerializeField]private float fireRate = 0.1f;
+    [SerializeField]private float fireRate = 1.0f;
     private float timeToShoot;
+
+    [SerializeField] private int bulletsInMagazine;
+    [SerializeField] private int maxBulletsInMagazine = 71;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bulletsInMagazine = maxBulletsInMagazine;
     }
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class ShootRaycast : MonoBehaviour
     {
         timeToShoot += Time.deltaTime;
 
-        if(isShooting && timeToShoot > fireRate) 
+        if(isShooting && timeToShoot > fireRate && bulletsInMagazine != 0) 
         {
             RaycastHit hit;            
             if(Physics.Raycast(RaycastController.position, RaycastController.forward,out hit, Range))
@@ -34,16 +37,31 @@ public class ShootRaycast : MonoBehaviour
                 if(hit.transform.CompareTag("Enemy"))
                 {
                     Debug.Log("Impacto");
+                    bulletsInMagazine--;
                 }
             }
             timeToShoot = 0;
         }
     }
 
+    public int getCurrentBullets()
+    {
+        return bulletsInMagazine;
+    }
+    public int getMaxBullets()
+    {
+        return maxBulletsInMagazine;
+    }
+
     public void OnShoot(InputValue input)
     {
         isShooting = input.isPressed;
         Debug.Log($"{isShooting}");
+    }
+
+    public void OnReload()
+    {
+        bulletsInMagazine = maxBulletsInMagazine;
     }
 
     private void OnDrawGizmos()
