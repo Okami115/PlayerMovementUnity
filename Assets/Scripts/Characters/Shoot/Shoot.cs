@@ -38,6 +38,6 @@ public class Shoot : MonoBehaviour
     {
         isShooting = input.isPressed;
 
-        Debug.Log($"{isShooting}");
+        
     }
 }
