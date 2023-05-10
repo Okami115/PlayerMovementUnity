@@ -11,7 +11,7 @@ public class ShootRaycast : MonoBehaviour
 
     private bool isShooting;
 
-    [SerializeField]private float fireRate = 1.0f;
+    [SerializeField]private float fireRate = 0.0f;
     private float timeToShoot;
 
     [SerializeField] private int bulletsInMagazine;
@@ -37,9 +37,10 @@ public class ShootRaycast : MonoBehaviour
                 if(hit.transform.CompareTag("Enemy"))
                 {
                     Debug.Log("Impacto");
-                    bulletsInMagazine--;
                 }
             }
+
+            bulletsInMagazine--;
             timeToShoot = 0;
         }
     }
