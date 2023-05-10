@@ -261,6 +261,8 @@ MonoBehaviour:
   shootForce: 3000
   shootRateTime: 0
   isShooting: 0
+  bulletsInMagazine: 0
+  maxBulletsInMagazine: 6
 --- !u!114 &25560299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RaycastController: {fileID: 1438203791}
   Range: 100
-  fireRate: 0
+  fireRate: 0.1
   bulletsInMagazine: 0
   maxBulletsInMagazine: 71
 --- !u!1 &61436867
@@ -475,6 +477,7 @@ GameObject:
   - component: {fileID: 415353396}
   - component: {fileID: 415353395}
   - component: {fileID: 415353394}
+  - component: {fileID: 415353400}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -597,6 +600,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &415353400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415353393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5169dc24c05484b8d21b2f82a8354d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healt: 10
+  damage: 0
 --- !u!1 &474342007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 731d29a3b91a76440a31193e12519c43, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 731d29a3b91a76440a31193e12519c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
