@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,24 +7,35 @@ using UnityEngine.Windows;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private bool canShoot = true;
-    [SerializeField] private Transform GunPos;
-    void Awake()
+    [SerializeField] private List<GameObject> Guns;
+
+    [SerializeField] private PlayerMovement playerMovement;
+    float time = 0.0001f; 
+
+    private void Start()
     {
-        GunPos = transform;
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerMovement.IsWalking += isMoving;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void isMoving(object sender, EventArgs e)
     {
-        if(!canShoot)
+
+        for (int i = 0; i < Guns.Count; i++)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-        }
-        else
-        {
-            transform.rotation = GunPos.rotation;
+            
+            if(time < 0)
+            {
+                time = 0.0001f;
+            }
+            else
+            {
+                time = -0.0001f;
+            }
+
+            Debug.Log("Moving");
+            Guns[i].transform.localPosition = new Vector3(Guns[i].transform.position.x, Guns[i].transform.position.y, Guns[i].transform.position.z + (Mathf.Sin(time)));
         }
     }
-
 }

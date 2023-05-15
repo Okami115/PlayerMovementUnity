@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform Pivot;
     [SerializeField] private Rigidbody _rigidBody;
@@ -34,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxDistanceGround = 0.5f;
     [SerializeField] private bool isGrounded;
 
+    public event EventHandler IsWalking;
+
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
@@ -56,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue input)
     {
         inputVec2 = input.Get<Vector2>();
+        IsWalking?.Invoke(this, EventArgs.Empty);
     }
     public void OnJump(InputValue input) 
     {
