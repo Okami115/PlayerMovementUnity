@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private EnemyController enemyController;
+
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject Enemy;
     [SerializeField] private List<GameObject> listEnemies;
@@ -15,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        
+        enemyController.dead += isDead;
     }
 
 
@@ -32,16 +34,12 @@ public class EnemySpawner : MonoBehaviour
                 currentEnemies++;
             }
         }
+    }
 
-        for (int i = 0; i < listEnemies.Count; i++)
-        {
-            if (listEnemies[i].GetComponent<Enemy>().GetHealt() < 0)
-            {
-                maxEnemiesSpawned++;
-                Destroy(listEnemies[i].gameObject);
-                listEnemies.Remove(listEnemies[i]);
-                currentEnemies--;
-            }
-        }
+    private void isDead(int index)
+    {
+        maxEnemiesSpawned++;
+        currentEnemies--;
+        listEnemies.Remove(listEnemies[index]);
     }
 }

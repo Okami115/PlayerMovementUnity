@@ -100,6 +100,15 @@ namespace Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interactive"",
+                    ""type"": ""Value"",
+                    ""id"": ""34858b75-609b-433b-93b5-0b61da80b1de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -289,6 +298,17 @@ namespace Inputs
                     ""action"": ""CloseCanvas"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b5d1c18-5628-46bf-8095-1c91d6c595a2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -439,6 +459,7 @@ namespace Inputs
             m_World_Aim = m_World.FindAction("Aim", throwIfNotFound: true);
             m_World_Reload = m_World.FindAction("Reload", throwIfNotFound: true);
             m_World_CloseCanvas = m_World.FindAction("CloseCanvas", throwIfNotFound: true);
+            m_World_Interactive = m_World.FindAction("Interactive", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selecction = m_Menu.FindAction("Selecction", throwIfNotFound: true);
@@ -513,6 +534,7 @@ namespace Inputs
         private readonly InputAction m_World_Aim;
         private readonly InputAction m_World_Reload;
         private readonly InputAction m_World_CloseCanvas;
+        private readonly InputAction m_World_Interactive;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -525,6 +547,7 @@ namespace Inputs
             public InputAction @Aim => m_Wrapper.m_World_Aim;
             public InputAction @Reload => m_Wrapper.m_World_Reload;
             public InputAction @CloseCanvas => m_Wrapper.m_World_CloseCanvas;
+            public InputAction @Interactive => m_Wrapper.m_World_Interactive;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -558,6 +581,9 @@ namespace Inputs
                 @CloseCanvas.started += instance.OnCloseCanvas;
                 @CloseCanvas.performed += instance.OnCloseCanvas;
                 @CloseCanvas.canceled += instance.OnCloseCanvas;
+                @Interactive.started += instance.OnInteractive;
+                @Interactive.performed += instance.OnInteractive;
+                @Interactive.canceled += instance.OnInteractive;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -586,6 +612,9 @@ namespace Inputs
                 @CloseCanvas.started -= instance.OnCloseCanvas;
                 @CloseCanvas.performed -= instance.OnCloseCanvas;
                 @CloseCanvas.canceled -= instance.OnCloseCanvas;
+                @Interactive.started -= instance.OnInteractive;
+                @Interactive.performed -= instance.OnInteractive;
+                @Interactive.canceled -= instance.OnInteractive;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -675,6 +704,7 @@ namespace Inputs
             void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
             void OnCloseCanvas(InputAction.CallbackContext context);
+            void OnInteractive(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

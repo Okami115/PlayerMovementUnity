@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private Transform orientation;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxDistanceGround = 0.5f;
     [SerializeField] private bool isGrounded;
 
-    public event EventHandler IsWalking;
+    public event Action<bool> Buy;
 
     void Start()
     {
@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue input)
     {
         inputVec2 = input.Get<Vector2>();
-        IsWalking?.Invoke(this, EventArgs.Empty);
     }
     public void OnJump(InputValue input) 
     {
@@ -73,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
     public void OnSprint(InputValue input)
     {
         isSprinting = input.isPressed;
+    }
+
+    public void OnInteractive(InputValue input)
+    {
+        Buy?.Invoke(input.isPressed);
     }
 
     private void MovePlayer()

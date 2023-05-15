@@ -9,13 +9,12 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private List<GameObject> Guns;
 
-    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerController playerMovement;
     float time = 0.0001f; 
 
     private void Start()
     {
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        playerMovement.IsWalking += isMoving;
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
 
