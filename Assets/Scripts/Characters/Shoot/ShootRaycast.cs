@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] private float Range = 10;
 
     private bool isShooting;
+    private bool canShoot = true;
 
     [SerializeField]private float fireRate = 0.0f;
     private float timeToShoot;
@@ -17,6 +19,7 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] private int bulletsInMagazine;
     [SerializeField] private int maxBulletsInMagazine = 71;
 
+    public event EventHandler Impact;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +32,7 @@ public class ShootRaycast : MonoBehaviour
     {
         timeToShoot += Time.deltaTime;
 
-        if(isShooting && timeToShoot > fireRate && bulletsInMagazine != 0) 
+        if(canShoot && isShooting && timeToShoot > fireRate && bulletsInMagazine != 0) 
         {
             RaycastHit hit;            
             if(Physics.Raycast(RaycastController.position, RaycastController.forward,out hit, Range))
@@ -37,6 +40,7 @@ public class ShootRaycast : MonoBehaviour
                 if(hit.transform.CompareTag("Enemy"))
                 {
                     hit.transform.GetComponent<Enemy>().GetDamage(2);
+                    Impact?.Invoke(this, EventArgs.Empty);
                 }
             }
 
@@ -57,7 +61,6 @@ public class ShootRaycast : MonoBehaviour
     public void OnShoot(InputValue input)
     {
         isShooting = input.isPressed;
-        Debug.Log($"{isShooting}");
     }
 
     public void OnReload()
