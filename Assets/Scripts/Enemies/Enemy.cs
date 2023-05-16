@@ -7,18 +7,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int healt;
     [SerializeField] private int damage;
 
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public int GetHealt()
     {
         return healt;
