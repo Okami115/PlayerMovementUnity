@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +40,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded;
 
     public event Action<bool> Buy;
+    public event Action<bool> Shoot;
+    public event Action Reload;
+    public event Action Moving;
 
     void Start()
     {
@@ -61,6 +66,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue input)
     {
         inputVec2 = input.Get<Vector2>();
+        Moving?.Invoke();
     }
     public void OnJump(InputValue input) 
     {
@@ -68,12 +74,19 @@ public class PlayerController : MonoBehaviour
         CancelInvoke(nameof(jumpReset));
         Invoke(nameof(jumpReset), jumpCooldown); 
     }
-
     public void OnSprint(InputValue input)
     {
         isSprinting = input.isPressed;
     }
+    public void OnShoot(InputValue input)
+    {
+        Shoot?.Invoke(input.isPressed);
+    }
 
+    public void OnReload()
+    {
+        Reload?.Invoke();
+    }
     public void OnInteractive(InputValue input)
     {
         Buy?.Invoke(input.isPressed);

@@ -14,8 +14,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        shootRaycast = GameObject.FindGameObjectWithTag("Player").GetComponent<ShootRaycast>();
-        shootRaycast.Impact += AddPoints;
+
     }
 
 
@@ -24,12 +23,7 @@ public class GameManager : MonoBehaviour
         pointsText.text = points.ToString();
     }
 
-    private void AddPoints(object sender, EventArgs e)
-    {
-        points += 10;
-    }
-
-    public void SetPoints(int points)
+    public void AddPoints(int points)
     {
         this.points += points;
     }

@@ -5,25 +5,44 @@ using UnityEngine.InputSystem;
 
 public class Shoot : MonoBehaviour
 {
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private Animator shootingAnimator;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private GameObject bullet;
 
-    [SerializeField] private float shootRate = 1.0f;
-    [SerializeField] private float shootForce = 1000f;
+    [SerializeField] private float shootRate;
+    [SerializeField] private float shootForce; 
+    [SerializeField] bool isAutomatic;
 
-    [SerializeField] private float shootRateTime = 0;
+    private bool reloading = false;
+    [SerializeField] private float timeToReload;
+    [SerializeField] private float currentTimeToReload;
+
+    [SerializeField] private float shootRateTime;
 
     [SerializeField] private bool isShooting = false;
 
     [SerializeField] private int bulletsInMagazine;
-    [SerializeField] private int maxBulletsInMagazine = 6;
-
+    [SerializeField] private int maxBulletsInMagazine;
 
 
     void Update()
     {
-        if(Time.time > shootRateTime && isShooting && bulletsInMagazine > 0)
+        if (reloading)
         {
+            currentTimeToReload -= Time.deltaTime;
+        }
+        if (currentTimeToReload < 0)
+        {
+            currentTimeToReload = timeToReload;
+            reloading = false;
+            shootingAnimator.SetBool("Reloading", false);
+        }
+
+        if (Time.time > shootRateTime && isShooting && bulletsInMagazine > 0 && !reloading)
+        {
+            shootingAnimator.Play("Shoot");
+
             GameObject newBullet;
 
             newBullet = Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
@@ -34,18 +53,54 @@ public class Shoot : MonoBehaviour
 
             bulletsInMagazine--;
 
-            Destroy(newBullet, 4);
+            Destroy(newBullet, 2);
+        }
+
+        if (!isAutomatic && isShooting)
+        {
+            isShooting = false;
         }
 
     }
 
-    public void OnShoot(InputValue input)
+    void Start()
     {
-        isShooting = input.isPressed;
+        shootingAnimator = GetComponent<Animator>();
+
+        bulletsInMagazine = maxBulletsInMagazine;
+        playerController.Shoot += PhisicShoot;
+        playerController.Reload += Reload;
+        playerController.Moving += MovingAnimation;
     }
 
-    public void OnReload()
+    public int getCurrentBullets()
     {
-        bulletsInMagazine = maxBulletsInMagazine;
+        return bulletsInMagazine;
+    }
+    public int getMaxBullets()
+    {
+        return maxBulletsInMagazine;
+    }
+
+    public void PhisicShoot(bool input)
+    {
+        isShooting = input;
+    }
+
+    public void Reload()
+    {
+        if (!reloading)
+        {
+            reloading = true;
+            bulletsInMagazine = maxBulletsInMagazine;
+            shootingAnimator.SetBool("Reloading", true);
+            shootingAnimator.Play("Reload");
+
+        }
+    }
+
+    private void MovingAnimation()
+    {
+
     }
 }

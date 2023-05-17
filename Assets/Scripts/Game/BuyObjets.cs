@@ -8,12 +8,12 @@ using UnityEngine.InputSystem;
 
 public class BuyObjets : MonoBehaviour
 {
-    [SerializeField] private float distToBuy;
     [SerializeField] private int price;
     [SerializeField] private TextMeshProUGUI mensages;
     [SerializeField] private GameObject Player;
     [SerializeField] private PlayerController PlayerController;
     [SerializeField] private GameManager gameManager;
+    bool canBuy = false;
 
 
     private bool input;
@@ -22,15 +22,13 @@ public class BuyObjets : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerController = Player.GetComponent<PlayerController>();
-        PlayerController.Buy += isBuying;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(Player.transform.position, this.transform.position);
 
-        if(distance < distToBuy )
+        if(canBuy)
         {
             mensages.text = $"press E to buy ({price})";
 
@@ -38,12 +36,30 @@ public class BuyObjets : MonoBehaviour
             {
 
                 Destroy(this.gameObject);
-                gameManager.SetPoints(gameManager.GetPoints() - price);
+                gameManager.AddPoints(gameManager.GetPoints() - price);
                 mensages.text = $" ";
             }
         }
-        else
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+        if (other.tag == "Player")
         {
+            Debug.Log("Enter");
+            canBuy = true;
+            PlayerController.Buy += isBuying;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("Exit");
+            canBuy = false;
+            PlayerController.Buy -= isBuying;
             mensages.text = $" ";
         }
     }

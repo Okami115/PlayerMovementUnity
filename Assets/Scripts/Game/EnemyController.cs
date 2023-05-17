@@ -14,7 +14,12 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private Transform target;
 
-    private int maxEnemiesSpawned = 100;
+    [SerializeField] private int maxEnemiesSpawned = 1;
+
+    [SerializeField] private float currentSpeed = 10;
+    [SerializeField] private int currentHealt;
+
+    private int round = 1;
 
     public event System.Action swichScene;
 
@@ -39,6 +44,10 @@ public class EnemyController : MonoBehaviour
 
         if (listEnemies.Count == 0)
         {
+            currentSpeed = currentSpeed * (round / 2);
+
+            if (currentSpeed > 50) { currentSpeed = 50;}
+
             if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
             {
                 swichScene?.Invoke();

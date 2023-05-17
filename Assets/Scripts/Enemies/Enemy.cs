@@ -12,6 +12,11 @@ public class Enemy : MonoBehaviour
         return healt;
     }
 
+    public void SetHealt(int healt) 
+    { 
+        this.healt = healt;
+    }
+
     public void GetDamage(int damage)
     {
         healt -= damage;
