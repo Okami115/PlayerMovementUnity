@@ -9,14 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI pointsText;
 
     [SerializeField] private int points;
-    [SerializeField] private ShootRaycast shootRaycast;
-
-
-    void Start()
-    {
-
-    }
-
 
     void Update()
     {

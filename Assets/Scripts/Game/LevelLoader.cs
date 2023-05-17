@@ -10,8 +10,8 @@ public class LevelLoader : MonoBehaviour
     [ContextMenu("Load Level 1")]
     public void LoadLevel1(int buildIndex)
     {
-
-        if(buildIndex != -1)
+        Time.timeScale = 1f;
+        if (buildIndex != -1)
         {
 
             SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);

@@ -75,15 +75,6 @@ namespace Inputs
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Aim"",
-                    ""type"": ""Button"",
-                    ""id"": ""63937264-6fc2-409c-b63d-698013ef1516"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Reload"",
                     ""type"": ""Button"",
                     ""id"": ""5c79b4cf-f8ae-46ad-871e-ffe6c8736a40"",
@@ -93,15 +84,6 @@ namespace Inputs
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CloseCanvas"",
-                    ""type"": ""Value"",
-                    ""id"": ""e520537e-a5c0-488f-a163-2f7669b3c265"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Interactive"",
                     ""type"": ""Value"",
                     ""id"": ""34858b75-609b-433b-93b5-0b61da80b1de"",
@@ -109,20 +91,18 @@ namespace Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""548d2caf-a3f8-4c1e-a9c1-f10b5ca9bc0a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""db893c25-414c-4505-990d-f97980a9653c"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""406af9f7-908b-4272-8216-458808d1750d"",
@@ -202,30 +182,8 @@ namespace Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b692af65-8fdb-4a8e-8755-2a085487d625"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""20638013-d546-48fd-b9a2-33a55ee3c569"",
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c9e5efc6-401b-4582-affd-5bc5ae1053fa"",
-                    ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -246,8 +204,30 @@ namespace Inputs
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1e036ff4-329d-47e0-8317-79eaaf0ce8ae"",
+                    ""path"": ""<DualShockGamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""adc78dc0-271c-45c1-8fe2-63e1bc8d2965"",
                     ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cb938f6-405f-4f79-9760-c046414961c3"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -268,12 +248,12 @@ namespace Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cd87942e-0e6c-4e73-94af-d739bda272c8"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""393a1cff-5d0f-4631-80ef-3a03a821d367"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -290,12 +270,12 @@ namespace Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b628775f-3eb8-42df-8e84-4079a04637a6"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""0d126d1b-19e6-491d-852b-56a748b430b9"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CloseCanvas"",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -307,6 +287,39 @@ namespace Inputs
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interactive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc7d0667-8a11-4fec-aab9-fb18d770a887"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interactive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20f1da09-c2d2-47e1-b244-8b7bf5f674b7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98c531b0-56d6-4879-b4ad-9fb280b08613"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -358,6 +371,17 @@ namespace Inputs
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4acc1a1b-938d-4f88-9ca1-863a7e622a03"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2f5e4630-98fc-4335-8b73-cbaa452fbfde"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -371,6 +395,17 @@ namespace Inputs
                     ""name"": """",
                     ""id"": ""adddeda0-b4d1-4df6-b9b2-d6b4510946eb"",
                     ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a733ec3-638e-4f26-8ea4-1b5127d7688b"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -443,6 +478,39 @@ namespace Inputs
                     ""action"": ""Selecction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Dpad"",
+                    ""id"": ""e9486531-48d7-4b61-8ef4-e4fe00127711"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selecction"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ecf1780b-f18a-40c4-99a5-518e6f3d586b"",
+                    ""path"": ""<DualShockGamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selecction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a0bdfab6-c8fc-40bd-9b63-1a2a53213d74"",
+                    ""path"": ""<DualShockGamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Selecction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -456,10 +524,9 @@ namespace Inputs
             m_World_Sprint = m_World.FindAction("Sprint", throwIfNotFound: true);
             m_World_Camera = m_World.FindAction("Camera", throwIfNotFound: true);
             m_World_Shoot = m_World.FindAction("Shoot", throwIfNotFound: true);
-            m_World_Aim = m_World.FindAction("Aim", throwIfNotFound: true);
             m_World_Reload = m_World.FindAction("Reload", throwIfNotFound: true);
-            m_World_CloseCanvas = m_World.FindAction("CloseCanvas", throwIfNotFound: true);
             m_World_Interactive = m_World.FindAction("Interactive", throwIfNotFound: true);
+            m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selecction = m_Menu.FindAction("Selecction", throwIfNotFound: true);
@@ -531,10 +598,9 @@ namespace Inputs
         private readonly InputAction m_World_Sprint;
         private readonly InputAction m_World_Camera;
         private readonly InputAction m_World_Shoot;
-        private readonly InputAction m_World_Aim;
         private readonly InputAction m_World_Reload;
-        private readonly InputAction m_World_CloseCanvas;
         private readonly InputAction m_World_Interactive;
+        private readonly InputAction m_World_Pause;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -544,10 +610,9 @@ namespace Inputs
             public InputAction @Sprint => m_Wrapper.m_World_Sprint;
             public InputAction @Camera => m_Wrapper.m_World_Camera;
             public InputAction @Shoot => m_Wrapper.m_World_Shoot;
-            public InputAction @Aim => m_Wrapper.m_World_Aim;
             public InputAction @Reload => m_Wrapper.m_World_Reload;
-            public InputAction @CloseCanvas => m_Wrapper.m_World_CloseCanvas;
             public InputAction @Interactive => m_Wrapper.m_World_Interactive;
+            public InputAction @Pause => m_Wrapper.m_World_Pause;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -572,18 +637,15 @@ namespace Inputs
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
-                @CloseCanvas.started += instance.OnCloseCanvas;
-                @CloseCanvas.performed += instance.OnCloseCanvas;
-                @CloseCanvas.canceled += instance.OnCloseCanvas;
                 @Interactive.started += instance.OnInteractive;
                 @Interactive.performed += instance.OnInteractive;
                 @Interactive.canceled += instance.OnInteractive;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -603,18 +665,15 @@ namespace Inputs
                 @Shoot.started -= instance.OnShoot;
                 @Shoot.performed -= instance.OnShoot;
                 @Shoot.canceled -= instance.OnShoot;
-                @Aim.started -= instance.OnAim;
-                @Aim.performed -= instance.OnAim;
-                @Aim.canceled -= instance.OnAim;
                 @Reload.started -= instance.OnReload;
                 @Reload.performed -= instance.OnReload;
                 @Reload.canceled -= instance.OnReload;
-                @CloseCanvas.started -= instance.OnCloseCanvas;
-                @CloseCanvas.performed -= instance.OnCloseCanvas;
-                @CloseCanvas.canceled -= instance.OnCloseCanvas;
                 @Interactive.started -= instance.OnInteractive;
                 @Interactive.performed -= instance.OnInteractive;
                 @Interactive.canceled -= instance.OnInteractive;
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -701,10 +760,9 @@ namespace Inputs
             void OnSprint(InputAction.CallbackContext context);
             void OnCamera(InputAction.CallbackContext context);
             void OnShoot(InputAction.CallbackContext context);
-            void OnAim(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
-            void OnCloseCanvas(InputAction.CallbackContext context);
             void OnInteractive(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

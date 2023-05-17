@@ -201,9 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2549975411988545618}
   - component: {fileID: 2549975411988545629}
+  - component: {fileID: 5665547698974144496}
   - component: {fileID: 2549975411988545619}
-  - component: {fileID: 2549975411988545617}
-  - component: {fileID: 2549975411988545616}
   - component: {fileID: 2549975411988545628}
   m_Layer: 0
   m_Name: Player
@@ -247,6 +246,21 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &5665547698974144496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549975411988545631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759c814a93037c741b54152403e02654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealt: 1
+  healt: 1
+  timeToHealt: 3
 --- !u!114 &2549975411988545619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,43 +295,6 @@ MonoBehaviour:
   groundDrag: 5
   maxDistanceGround: 0.6
   isGrounded: 0
---- !u!114 &2549975411988545617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2549975411988545631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a0109a7f472b14086cbf8d197701d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RaycastController: {fileID: 0}
-  Range: 100
-  fireRate: 0.1
-  bulletsInMagazine: 0
-  maxBulletsInMagazine: 71
---- !u!114 &2549975411988545616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2549975411988545631}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8ca3e77ce3d6f498d79261b2677678, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnBullet: {fileID: 0}
-  bullet: {fileID: 8927480689062216726, guid: 732a9785c88c061489961d407c861e41, type: 3}
-  shootRate: 0.11
-  shootForce: 3000
-  shootRateTime: 0
-  isShooting: 0
-  bulletsInMagazine: 0
-  maxBulletsInMagazine: 6
 --- !u!114 &2549975411988545628
 MonoBehaviour:
   m_ObjectHideFlags: 0

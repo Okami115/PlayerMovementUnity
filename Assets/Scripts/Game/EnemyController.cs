@@ -23,12 +23,6 @@ public class EnemyController : MonoBehaviour
 
     public event System.Action swichScene;
 
-    void Start()
-    {
-
-    }
-
-
     void Update()
     {
 
@@ -58,7 +52,7 @@ public class EnemyController : MonoBehaviour
                 {
                     int rand = Random.Range(0, spawnPoints.Length);
 
-                    listEnemies.Add(Instantiate(Enemy, spawnPoints[rand].transform));
+                    listEnemies.Add(Instantiate(Enemy, spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation));
                     listEnemies[i].GetComponent<EnemyMovement>().SetTarget(target);
                 }
             }

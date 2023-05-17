@@ -680,6 +680,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8146172031129279474}
+  - component: {fileID: 1571186679174649852}
+  - component: {fileID: 1477970641232546815}
   m_Layer: 0
   m_Name: M45A1
   m_TagString: Untagged
@@ -710,3 +712,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1571186679174649852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810963787187126600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a0109a7f472b14086cbf8d197701d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  RaycastController: {fileID: 0}
+  playerController: {fileID: 0}
+  maxBullets: {fileID: 0}
+  currentBullets: {fileID: 0}
+  shootingAnimator: {fileID: 0}
+  Range: 1000
+  isAutomatic: 0
+  timeToReload: 1
+  currentTimeToReload: 0
+  damage: 5
+  fireRate: 0.05
+  bulletsInMagazine: 7
+  maxBulletsInMagazine: 7
+--- !u!95 &1477970641232546815
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810963787187126600}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a7c82b0bafd9674f881ce6918dee981, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

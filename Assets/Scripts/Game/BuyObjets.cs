@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BuyObjets : MonoBehaviour
 {
+
     [SerializeField] private int price;
     [SerializeField] private TextMeshProUGUI mensages;
     [SerializeField] private GameObject Player;
@@ -28,6 +29,8 @@ public class BuyObjets : MonoBehaviour
     void Update()
     {
 
+
+
         if(canBuy)
         {
             mensages.text = $"press E to buy ({price})";
@@ -36,7 +39,7 @@ public class BuyObjets : MonoBehaviour
             {
 
                 Destroy(this.gameObject);
-                gameManager.AddPoints(gameManager.GetPoints() - price);
+                gameManager.AddPoints(- price);
                 mensages.text = $" ";
             }
         }
@@ -45,10 +48,8 @@ public class BuyObjets : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
         if (other.tag == "Player")
         {
-            Debug.Log("Enter");
             canBuy = true;
             PlayerController.Buy += isBuying;
         }
@@ -57,7 +58,6 @@ public class BuyObjets : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Exit");
             canBuy = false;
             PlayerController.Buy -= isBuying;
             mensages.text = $" ";
