@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] SoundManager soundManager;
+    [SerializeField] TextMeshProUGUI healtPoints;
+    [SerializeField] private AudioClip hit;
     [SerializeField] private int maxHealt;
     [SerializeField] private int healt;
     [SerializeField] private int timeToHealt;
@@ -20,6 +26,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        healtPoints.text = healt.ToString();
+
         if(timerOn)
         {
             timer += Time.deltaTime;
@@ -42,6 +51,7 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
+            soundManager.PlaySound(hit);
             healt--;
             timerOn = true;
         }

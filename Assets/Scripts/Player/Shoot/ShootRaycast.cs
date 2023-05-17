@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class ShootRaycast : MonoBehaviour
 {
+    [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform RaycastController;
     [SerializeField] private PlayerController playerController;
@@ -16,6 +17,9 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] Animator shootingAnimator;
     [SerializeField] private float Range;
     [SerializeField] bool isAutomatic;
+
+    [SerializeField] AudioClip ShootSound;
+    [SerializeField] AudioClip ReloadSound;
 
     private bool isShooting;
     private bool canShoot = true;
@@ -60,7 +64,7 @@ public class ShootRaycast : MonoBehaviour
         if(canShoot && isShooting && timeToShoot > fireRate && bulletsInMagazine != 0 && !reloading) 
         {
             shootingAnimator.Play("Shoot");
-
+            soundManager.PlaySound(ShootSound);
             RaycastHit hit;
             if (Physics.Raycast(RaycastController.position, RaycastController.forward,out hit, Range))
             {
@@ -91,12 +95,13 @@ public class ShootRaycast : MonoBehaviour
 
     public void Reload()
     {
-        if(!reloading)
+        if(!reloading && bulletsInMagazine != maxBulletsInMagazine)
         {
             reloading = true;
             bulletsInMagazine = maxBulletsInMagazine;
             shootingAnimator.SetBool("Reloading", true);
             shootingAnimator.Play("Reload");
+            soundManager.PlaySound(ReloadSound);
 
         }
     }

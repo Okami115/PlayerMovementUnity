@@ -6,6 +6,8 @@ using UnityEngine.Windows;
 
 public class BuyGuns : MonoBehaviour
 {
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private AudioClip buySound;
     [SerializeField] private List<GameObject> Guns;
     [SerializeField] private GameObject GunForSell;
     [SerializeField] private GameManager gameManager;
@@ -46,6 +48,7 @@ public class BuyGuns : MonoBehaviour
 
             if (input && gameManager.GetPoints() >= price)
             {
+                soundManager.PlaySound(buySound);
                 for (int i = 0; i < Guns.Count; i++)
                 {
                     Guns[i].SetActive(false);

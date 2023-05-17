@@ -36,7 +36,10 @@ public class LevelLoader : MonoBehaviour
         SceneManager.UnloadSceneAsync(sceneIndex);
     }
 
-
+    public void Exit()
+    {
+        Application.Quit();
+    }
 
 }
 

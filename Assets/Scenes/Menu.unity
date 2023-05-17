@@ -1675,8 +1675,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 730779130}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevel1
-        m_Mode: 3
+        m_MethodName: Exit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

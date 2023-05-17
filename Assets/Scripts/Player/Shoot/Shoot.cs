@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Shoot : MonoBehaviour
 {
+    [SerializeField] private SoundManager soundManager;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private TextMeshProUGUI maxBullets;
+    [SerializeField] private TextMeshProUGUI currentBullets;
     [SerializeField] private Animator shootingAnimator;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private GameObject bullet;
+    [SerializeField] AudioClip ShootSound;
+    [SerializeField] AudioClip ReloadSound;
 
     [SerializeField] private float shootRate;
     [SerializeField] private float shootForce; 
@@ -28,6 +34,9 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+        maxBullets.text = maxBulletsInMagazine.ToString();
+        currentBullets.text = bulletsInMagazine.ToString();
+
         if (reloading)
         {
             currentTimeToReload -= Time.deltaTime;
@@ -42,6 +51,7 @@ public class Shoot : MonoBehaviour
         if (Time.time > shootRateTime && isShooting && bulletsInMagazine > 0 && !reloading)
         {
             shootingAnimator.Play("Shoot");
+            soundManager.PlaySound(ShootSound);
 
             GameObject newBullet;
 
@@ -89,12 +99,13 @@ public class Shoot : MonoBehaviour
 
     public void Reload()
     {
-        if (!reloading)
+        if (!reloading && bulletsInMagazine != maxBulletsInMagazine)
         {
             reloading = true;
             bulletsInMagazine = maxBulletsInMagazine;
             shootingAnimator.SetBool("Reloading", true);
             shootingAnimator.Play("Reload");
+            soundManager.PlaySound(ReloadSound);
 
         }
     }

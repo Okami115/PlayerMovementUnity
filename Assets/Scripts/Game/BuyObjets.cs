@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 
 public class BuyObjets : MonoBehaviour
 {
-
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private AudioClip buySound;
     [SerializeField] private int price;
     [SerializeField] private TextMeshProUGUI mensages;
     [SerializeField] private GameObject Player;
@@ -37,7 +38,7 @@ public class BuyObjets : MonoBehaviour
 
             if(input && gameManager.GetPoints() >= price)
             {
-
+                soundManager.PlaySound(buySound);
                 Destroy(this.gameObject);
                 gameManager.AddPoints(- price);
                 mensages.text = $" ";
