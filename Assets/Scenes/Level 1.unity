@@ -32437,6 +32437,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1551477434508532510, guid: e1834a2766834834abf7601b8501317d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551477434508532510, guid: e1834a2766834834abf7601b8501317d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -148
+      objectReference: {fileID: 0}
     - target: {fileID: 1650360138708760403, guid: e1834a2766834834abf7601b8501317d, type: 3}
       propertyPath: panel
       value: 
@@ -33116,7 +33124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9117562872853488435, guid: 29d266bc7df165f40821beab50ec8d69, type: 3}
       propertyPath: points
-      value: 3000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 9117562872853488435, guid: 29d266bc7df165f40821beab50ec8d69, type: 3}
       propertyPath: pointsText

@@ -147,10 +147,4 @@ public class PlayerController : MonoBehaviour
     {
         isJumping = false;
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(Pivot.position, Vector3.down * maxDistanceGround);
-        Gizmos.DrawRay(Pivot.position, direction.normalized);
-    }
 }
