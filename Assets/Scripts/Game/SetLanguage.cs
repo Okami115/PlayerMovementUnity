@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SetLanguage : MonoBehaviour
 {
 
+    //TODO: Fix - Context menu doesn't work with parameters
     [ContextMenu("Set Language")]
     public void setLanguage(string langauge)
     {

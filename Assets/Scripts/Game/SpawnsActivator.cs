@@ -6,6 +6,7 @@ public class SpawnsActivator : MonoBehaviour
 {
 
     [SerializeField] private List<Transform> spawns;
+    //TODO: TP2 - Remove unused methods/variables/classes
     // Start is called before the first frame update
     void Start()
     {

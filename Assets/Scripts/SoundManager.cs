@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
+    //TODO: TP2 - Remove unused methods/variables/classes
     public static SoundManager Instance;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectSource;
@@ -15,6 +16,7 @@ public class SoundManager : MonoBehaviour
         effectSource.PlayOneShot(clip);
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public AudioSource GetMusicSource()
     {
         return musicSource;

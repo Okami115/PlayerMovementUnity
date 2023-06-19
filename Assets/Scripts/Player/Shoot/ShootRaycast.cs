@@ -10,6 +10,7 @@ public class ShootRaycast : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameManager gameManager;
+    //TODO: TP2 - Syntax - Consistency in naming convention
     [SerializeField] private Transform RaycastController;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private TextMeshProUGUI maxBullets;
@@ -57,20 +58,25 @@ public class ShootRaycast : MonoBehaviour
         {
             currentTimeToReload = timeToReload;
             reloading = false;
+            //TODO: TP2 - SOLID
+            //TODO: Fix - Hardcoded value
             shootingAnimator.SetBool("Reloading", false);
         }
 
 
         if(canShoot && isShooting && timeToShoot > fireRate && bulletsInMagazine != 0 && !reloading) 
         {
+            //TODO: Fix - Hardcoded value
             shootingAnimator.Play("Shoot");
             soundManager.PlaySound(ShootSound);
             RaycastHit hit;
             if (Physics.Raycast(RaycastController.position, RaycastController.forward,out hit, Range))
             {
+                //TODO: Fix - Hardcoded value
                 if(hit.transform.CompareTag("Enemy"))
                 {
                     hit.transform.GetComponent<Enemy>().GetDamage(damage);
+                    //TODO: Fix - Hardcoded value
                     gameManager.AddPoints(10);
                 }
             }
@@ -95,6 +101,7 @@ public class ShootRaycast : MonoBehaviour
 
     public void Reload()
     {
+        //TODO: Fix - Repeated code
         if(!reloading && bulletsInMagazine != maxBulletsInMagazine)
         {
             reloading = true;

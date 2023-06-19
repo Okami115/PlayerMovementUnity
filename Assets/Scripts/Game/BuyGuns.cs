@@ -4,8 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Windows;
 
+//TODO: OOP - Should inherit from BuyObjects
 public class BuyGuns : MonoBehaviour
 {
+    //TODO: TP2 - SOLID
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private AudioClip buySound;
     [SerializeField] private List<GameObject> Guns;
@@ -18,6 +20,7 @@ public class BuyGuns : MonoBehaviour
     private bool canBuy;
     bool hasGun;
 
+    //TODO: TP2 - Remove unused methods/variables/classes
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,7 @@ public class BuyGuns : MonoBehaviour
         {
             if (Guns[i].activeSelf)
             {
+                //TODO: Fix - hasGun = Guns[i] == GunForSell
                 if (Guns[i] == GunForSell)
                 {
                     hasGun = true;
@@ -42,6 +46,7 @@ public class BuyGuns : MonoBehaviour
             }
         }
 
+        //TODO: Fix - Could be a coroutine
         if (canBuy && !hasGun)
         {
             mensages.text = $"press E to buy ({price})";
@@ -49,6 +54,7 @@ public class BuyGuns : MonoBehaviour
             if (input && gameManager.GetPoints() >= price)
             {
                 soundManager.PlaySound(buySound);
+                //TODO: Fix - Why is this code here? You're not activating the other guns anywhere
                 for (int i = 0; i < Guns.Count; i++)
                 {
                     Guns[i].SetActive(false);
@@ -62,8 +68,10 @@ public class BuyGuns : MonoBehaviour
         }
     }
 
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     private void OnTriggerEnter(Collider other)
     {
+        //TODO: Fix - Hardcoded value
         if (other.tag == "Player")
         {
             canBuy = true;
@@ -72,6 +80,7 @@ public class BuyGuns : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        //TODO: Fix - Hardcoded value
         if (other.tag == "Player")
         {
             canBuy = false;
