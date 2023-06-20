@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     private @PlayerInputs controls;
 
     [SerializeField] private float mouseSensitivity = 100f;
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private Canvas text;
     private Vector2 mouseLooK;
 
@@ -35,6 +36,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        //TODO: Fix - Trash code
         OnCamera();
     }
 
@@ -52,6 +54,7 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        //TODO: TP2 - Remove unused methods/variables/classes
         //GetComponentInParent<Transform>().rotation = Quaternion.Euler(0, yRotation, 0);
     }
     

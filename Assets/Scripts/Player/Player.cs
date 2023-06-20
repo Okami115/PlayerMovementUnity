@@ -27,8 +27,10 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+        //TODO: TP2 - SOLID
         healtPoints.text = healt.ToString();
 
+        //TODO: Fix - Could be a coroutine
         if(timerOn)
         {
             timer += Time.deltaTime;
@@ -43,12 +45,14 @@ public class Player : MonoBehaviour
 
         if(healt <= 0) 
         {
+            //TODO: TP2 - SOLID
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //TODO: Fix - Hardcoded value
         if(collision.gameObject.tag == "Enemy")
         {
             soundManager.PlaySound(hit);

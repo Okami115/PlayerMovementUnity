@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
+    //TODO: TP2 - Syntax - Consistency in naming convention
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform Pivot;
     [SerializeField] private Rigidbody _rigidBody;
@@ -23,9 +24,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float airMultiplier = 10;
     [SerializeField] private bool isJumping;
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private bool readyToJump = true;
 
     [Header("Ground variables")]
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private float playerheight;
     [SerializeField] private LayerMask ground;
     [SerializeField] private LayerMask stairs;
@@ -39,12 +42,15 @@ public class PlayerController : MonoBehaviour
     public event Action Moving;
     public event Action Paused;
 
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     void Start()
     {
+        //TODO: Fix - Add [RequireComponentAttribute]
         _rigidBody = GetComponent<Rigidbody>();
         _rigidBody.freezeRotation = true;
     }
 
+    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -58,21 +64,25 @@ public class PlayerController : MonoBehaviour
         speedControl();
     }
 
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnMove(InputValue input)
     {
         inputVec2 = input.Get<Vector2>();
         Moving?.Invoke();
     }
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnJump(InputValue input) 
     {
         isJumping = input.isPressed;
         CancelInvoke(nameof(jumpReset));
         Invoke(nameof(jumpReset), jumpCooldown); 
     }
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnSprint(InputValue input)
     {
         isSprinting = input.isPressed;
     }
+    //TODO: Fix - Using Input related logic outside of an input responsible class
     public void OnShoot(InputValue input)
     {
         Shoot?.Invoke(input.isPressed);
@@ -99,6 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             direction -=Vector3.Project(direction.normalized, hit.normal);
         }
+        //TODO: Fix - Hardcoded value
         _rigidBody.AddForce(direction.normalized * moveSpeed * 10f, ForceMode.Force);
     }
     private void JumpPlayer()
@@ -130,6 +141,7 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(Pivot.position, Vector3.down, out hit, maxDistanceGround, layerMask);
     }
 
+    //TODO: Fix - Unclear name
     private void speedControl()
     {
         moveSpeed = isSprinting ? sprintSpeed : walkSpeed;
@@ -139,10 +151,12 @@ public class PlayerController : MonoBehaviour
         if(flatVel.magnitude > moveSpeed)
         {
             Vector3 limit = flatVel.normalized * moveSpeed;
+            //TODO: Fix - Controlling Rigidbody in Update instead of FixedUpdate
             _rigidBody.velocity = new Vector3(limit.x, _rigidBody.velocity.y, limit.z);
         }
 
     }
+    //TODO: Fix - Unclear name
     private void jumpReset()
     {
         isJumping = false;

@@ -13,6 +13,7 @@ public class EnemyMovementTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TODO: Fix - Add [RequireComponentAttribute]
         agent = GetComponent<NavMeshAgent>();
         int rand = Random.Range(0, target.Length);
         agent.destination = target[rand].position;
@@ -21,6 +22,8 @@ public class EnemyMovementTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO: Fix - myNavAgent.remainingDistance
+        //TODO: Fix - Could be a coroutine where you calculate the arriving time and yield a waitForSeconds
         float distance = Vector3.Distance(transform.position, agent.destination);
 
         if (distance <= minDistance) 

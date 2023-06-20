@@ -5,6 +5,7 @@ public class TutorialController : MonoBehaviour
 {
 
     [SerializeField] private EnemyController enemyController;
+    //TODO: TP2 - Remove unused methods/variables/classes
     [SerializeField] private int tutorialIndex;
     [SerializeField] private int levelIndex;
 
@@ -14,6 +15,7 @@ public class TutorialController : MonoBehaviour
         enemyController.swichScene += swichScene;
     }
 
+    //TODO: TP2 - Remove unused methods/variables/classes
     // Update is called once per frame
     void Update()
     {

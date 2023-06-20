@@ -16,6 +16,7 @@ public class HUD : MonoBehaviour
     }
 
 
+    //TODO: TP2 - Remove unused methods/variables/classes
     void Update()
     {
         
@@ -28,6 +29,7 @@ public class HUD : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    //TODO: Fix - Code is in Spanish or is trash code
     public void Reanudar()
     {
         Time.timeScale = 1f;

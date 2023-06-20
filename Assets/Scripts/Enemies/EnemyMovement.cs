@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TODO: Fix - Add [RequireComponentAttribute]
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -22,11 +23,13 @@ public class EnemyMovement : MonoBehaviour
         
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public Transform GetTarget()
     {
         return target;
     }
 
+    //TODO: Fix - Should be native Setter/Getter
     public void SetTarget(Transform target)
     {
         this.target = target;
