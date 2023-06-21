@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BuyObjets : MonoBehaviour
 {
+    //TODO: TP2 - SOLID
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private AudioClip buySound;
     [SerializeField] private int price;
