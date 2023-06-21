@@ -87,7 +87,6 @@ public class Shoot : MonoBehaviour
         bulletsInMagazine = maxBulletsInMagazine;
         playerController.Shoot += PhisicShoot;
         playerController.Reload += Reload;
-        playerController.Moving += MovingAnimation;
     }
 
     //TODO: Fix - Should be native Setter/Getter
@@ -119,11 +118,5 @@ public class Shoot : MonoBehaviour
             soundManager.PlaySound(ReloadSound);
 
         }
-    }
-
-    //TODO: TP2 - Remove unused methods/variables/classes
-    private void MovingAnimation()
-    {
-
     }
 }

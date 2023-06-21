@@ -5,7 +5,6 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
-
     [SerializeField] private GameObject panel; 
 
 
@@ -15,22 +14,13 @@ public class HUD : MonoBehaviour
         controller.Paused += Pause;
     }
 
-
-    //TODO: TP2 - Remove unused methods/variables/classes
-    void Update()
-    {
-        
-    }
-
     public void Pause()
     {
         Cursor.lockState = CursorLockMode.Confined;
         panel?.SetActive(true);
         Time.timeScale = 0f;
     }
-
-    //TODO: Fix - Code is in Spanish or is trash code
-    public void Reanudar()
+    public void Resume()
     {
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;

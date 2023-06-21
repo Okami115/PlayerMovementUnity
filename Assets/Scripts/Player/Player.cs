@@ -17,13 +17,11 @@ public class Player : MonoBehaviour
     private bool timerOn;
     private float timer;
 
-    // Start is called before the first frame update
     void Start()
     {
         healt = maxHealt;
     }
 
-    // Update is called once per frame
     void Update()
     {
 

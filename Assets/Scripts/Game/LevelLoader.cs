@@ -14,13 +14,7 @@ public class LevelLoader : MonoBehaviour
         Time.timeScale = 1f;
         if (buildIndex != -1)
         {
-
             SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
-        }
-        //TODO: TP2 - Remove unused methods/variables/classes
-        else
-        {
-           //exit aplication
         }
     }
 

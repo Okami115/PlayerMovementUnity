@@ -9,7 +9,7 @@ public class LanguageSelectionController : MonoBehaviour
     [SerializeField] int indexScene;
     [SerializeField] int indexLanguageScene;
     //TODO: Fix - Wrong name prevents unity message call
-    void AWake()
+    void Awake()
     {
         //TODO: Fix - Make const
         if (!PlayerPrefs.HasKey("Language"))

@@ -7,16 +7,14 @@ public class EnemyMovement : MonoBehaviour
 {
 
     [SerializeField] private Transform target;
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private NavMeshAgent agent; 
 
-    // Start is called before the first frame update
     void Start()
     {
         //TODO: Fix - Add [RequireComponentAttribute]
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         agent.destination = target.position;

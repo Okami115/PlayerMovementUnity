@@ -20,13 +20,6 @@ public class BuyGuns : MonoBehaviour
     private bool canBuy;
     bool hasGun;
 
-    //TODO: TP2 - Remove unused methods/variables/classes
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

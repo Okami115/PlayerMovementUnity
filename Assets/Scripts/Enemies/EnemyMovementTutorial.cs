@@ -10,7 +10,6 @@ public class EnemyMovementTutorial : MonoBehaviour
 
     private float minDistance = 5;
 
-    // Start is called before the first frame update
     void Start()
     {
         //TODO: Fix - Add [RequireComponentAttribute]

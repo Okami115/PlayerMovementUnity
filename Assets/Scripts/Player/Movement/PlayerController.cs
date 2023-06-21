@@ -24,12 +24,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float airMultiplier = 10;
     [SerializeField] private bool isJumping;
-    //TODO: TP2 - Remove unused methods/variables/classes
-    [SerializeField] private bool readyToJump = true;
 
     [Header("Ground variables")]
-    //TODO: TP2 - Remove unused methods/variables/classes
-    [SerializeField] private float playerheight;
     [SerializeField] private LayerMask ground;
     [SerializeField] private LayerMask stairs;
     [SerializeField] private float groundDrag = 5;
@@ -51,7 +47,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    // Update is called once per frame
     void FixedUpdate()
     {
         MovePlayer();

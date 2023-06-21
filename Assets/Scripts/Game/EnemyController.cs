@@ -20,8 +20,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int maxEnemiesSpawned = 1;
 
     [SerializeField] private float currentSpeed = 10;
-    //TODO: TP2 - Remove unused methods/variables/classes
-    [SerializeField] private int currentHealt;
 
     private int round = 1;
 
