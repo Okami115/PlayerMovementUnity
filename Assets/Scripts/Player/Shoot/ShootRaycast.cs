@@ -10,8 +10,7 @@ public class ShootRaycast : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameManager gameManager;
-    //TODO: TP2 - Syntax - Consistency in naming convention
-    [SerializeField] private Transform RaycastController;
+    [SerializeField] private Transform raycastController;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private TextMeshProUGUI maxBullets;
     [SerializeField] private TextMeshProUGUI currentBullets;
@@ -70,12 +69,12 @@ public class ShootRaycast : MonoBehaviour
             shootingAnimator.Play("Shoot");
             soundManager.PlaySound(ShootSound);
             RaycastHit hit;
-            if (Physics.Raycast(RaycastController.position, RaycastController.forward,out hit, Range))
+            if (Physics.Raycast(raycastController.position, raycastController.forward,out hit, Range))
             {
                 //TODO: Fix - Hardcoded value
                 if(hit.transform.CompareTag("Enemy"))
                 {
-                    hit.transform.GetComponent<Enemy>().GetDamage(damage);
+                    hit.transform.GetComponent<Health>().TakeDamage(damage);
                     //TODO: Fix - Hardcoded value
                     gameManager.AddPoints(10);
                 }
@@ -117,6 +116,6 @@ public class ShootRaycast : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(RaycastController.position, RaycastController.forward.normalized * Range);
+        Gizmos.DrawRay(raycastController.position, raycastController.forward.normalized * Range);
     }
 }

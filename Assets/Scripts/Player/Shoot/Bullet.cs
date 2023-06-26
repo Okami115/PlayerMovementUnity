@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
         //TODO: Fix - Hardcoded value
         if(collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().GetDamage(100);
+            collision.gameObject.GetComponent<Health>().TakeDamage(100);
             manager.AddPoints(damage);
             Destroy(this.gameObject);
         }

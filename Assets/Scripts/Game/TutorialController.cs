@@ -9,7 +9,7 @@ public class TutorialController : MonoBehaviour
 
     void Start()
     {
-        enemyController.swichScene += swichScene;
+        enemyController.changeScene += swichScene;
     }
     private void swichScene()
     {

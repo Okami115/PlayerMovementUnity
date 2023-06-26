@@ -10,21 +10,21 @@ public class EnemyController : MonoBehaviour
 
 
     [SerializeField] private Transform[] spawnPoints;
-    //TODO: Fix - Unclear name
+
     //TODO: BUG - Change Type to EnemyMovement to be able to call GetComponent without nullExceptions
-    [SerializeField] private GameObject Enemy;
+    [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private Transform target;
 
-    //TODO: Fix - Unclear name
-    [SerializeField] private int maxEnemiesSpawned = 1;
+    [SerializeField] private int enemySpawnLimit = 1;
 
     [SerializeField] private float currentSpeed = 10;
+    [SerializeField] private float maxSpeed = 50;
+    [SerializeField] private float SpeedMultiplier = 0.5f;
 
     private int round = 1;
 
-    //TODO: Fix - Unclear name
-    public event System.Action swichScene;
+    public event System.Action changeScene;
 
     void Update()
     {
@@ -32,40 +32,37 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < listEnemies.Count; i++)
         {
             //TODO: Fix - Should be event based
-            if (listEnemies[i].GetComponent<Enemy>().GetHealt() < 0)
+            if (listEnemies[i].GetComponent<Health>().HPoints < 0)
             {
                 //TODO: OOP - Objects should control themselves
                 Destroy(listEnemies[i].gameObject);
                 listEnemies.Remove(listEnemies[i]);
-                maxEnemiesSpawned++;
+                enemySpawnLimit++;
             }
         }
 
         //TODO: Fix - Should be event based
         if (listEnemies.Count == 0)
         {
-            //TODO: Fix - Hardcoded value
-            currentSpeed = currentSpeed * (round / 2);
+            currentSpeed = currentSpeed * (round * SpeedMultiplier);
 
-            //TODO: Fix - Hardcoded value
-            //TODO: Fix - Mathf.Clamp
-            if (currentSpeed > 50) { currentSpeed = 50;}
+            Mathf.Clamp(currentSpeed, 0, maxSpeed);
 
             //TODO: OOP - override      OR     TP2 - Strategy
             //TODO: Fix - Hardcoded value
             if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
             {
                 //TODO: TP2 - SOLID
-                swichScene?.Invoke();
+                changeScene?.Invoke();
             }
             else
             {
-                for (int i = 0; i < maxEnemiesSpawned; i++)
+                for (int i = 0; i < enemySpawnLimit; i++)
                 {
                     int rand = Random.Range(0, spawnPoints.Length);
 
-                    listEnemies.Add(Instantiate(Enemy, spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation));
-                    listEnemies[i].GetComponent<EnemyMovement>().SetTarget(target);
+                    listEnemies.Add(Instantiate(enemyPrefab, spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation));
+                    listEnemies[i].GetComponent<EnemyMovement>().Target = target;
                 }
             }
         }
