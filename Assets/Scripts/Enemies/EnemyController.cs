@@ -24,6 +24,12 @@ public class EnemyController : MonoBehaviour
 
     public event System.Action changeScene;
 
+    private void Start()
+    {
+        int rand = Random.Range(0, spawnPoints.Length);
+        SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
+    }
+
     private void DestroyEnemy(Health health)
     {
         enemySpawnLimit++;

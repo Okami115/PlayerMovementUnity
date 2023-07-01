@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BuyObjets : MonoBehaviour
 {
+
     //TODO: TP2 - SOLID
     [SerializeField] protected SoundManager soundManager;
     [SerializeField] protected AudioClip buySound;
@@ -16,45 +17,43 @@ public class BuyObjets : MonoBehaviour
     [SerializeField] protected PlayerController PlayerController;
     [SerializeField] protected GameManager gameManager;
     [SerializeField] protected GameObject Player;
-    protected bool canBuy = false;
+    [SerializeField] private string playerName = "Player";
     protected bool input;
+
+    protected virtual IEnumerator Canbuy()
+    {
+        mensages.text = $"press E to buy ({price})";
+        Debug.Log(input);
+        if (input && gameManager.GetPoints() >= price)
+        {
+            soundManager.PlaySound(buySound);
+            Destroy(this.gameObject);
+            gameManager.AddPoints(-price);
+            mensages.text = $" ";
+        }
+
+        yield return null;
+    }
 
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag(playerName);
         PlayerController = Player.GetComponent<PlayerController>();
     }
 
-    void Update()
+    private void OnTriggerStay(Collider other)
     {
-        if(canBuy)
+        if (other.tag == playerName)
         {
-            mensages.text = $"press E to buy ({price})";
-
-            if(input && gameManager.GetPoints() >= price)
-            {
-                soundManager.PlaySound(buySound);
-                Destroy(this.gameObject);
-                gameManager.AddPoints(- price);
-                mensages.text = $" ";
-            }
-        }
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            canBuy = true;
+            StartCoroutine(Canbuy());
             PlayerController.Buy += isBuying;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == playerName)
         {
-            canBuy = false;
+            StopCoroutine(Canbuy());
             PlayerController.Buy -= isBuying;
             mensages.text = $" ";
         }

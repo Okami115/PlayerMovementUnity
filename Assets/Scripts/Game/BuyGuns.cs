@@ -13,8 +13,10 @@ public class BuyGuns : BuyObjets
     [SerializeField] private string player = "Player";
     private bool hasGun;
 
-    private void Update()
+    protected override IEnumerator Canbuy()
     {
+        mensages.text = $"press E to buy ({price})";
+
         for (int i = 0; i < Guns.Count; i++)
         {
             if (Guns[i].activeSelf)
@@ -23,48 +25,25 @@ public class BuyGuns : BuyObjets
             }
         }
 
-        //TODO: Fix - Could be a coroutine
-        if (canBuy && !hasGun)
+        if (!hasGun && input && gameManager.GetPoints() >= price)
         {
-            mensages.text = $"press E to buy ({price})";
+            soundManager.PlaySound(buySound);
 
-            if (input && gameManager.GetPoints() >= price)
+            for (int i = 0; i < Guns.Count; i++)
             {
-                soundManager.PlaySound(buySound);
-
-                for (int i = 0; i < Guns.Count; i++)
-                {
-                    Guns[i].SetActive(false);
-                }
-
-                GunForSell.SetActive(true);
-
-                gameManager.AddPoints(-price);
-                mensages.text = $" ";
+                Guns[i].SetActive(false);
             }
-        }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == player)
-        {
-            canBuy = true;
-            PlayerController.Buy += isBuying;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == player)
-        {
-            canBuy = false;
-            PlayerController.Buy -= isBuying;
+            GunForSell.SetActive(true);
+
+            gameManager.AddPoints(-price);
             mensages.text = $" ";
         }
-    }
+        else if (hasGun) 
+        {
+            mensages.text = $"you already own this weapon";
+        }
 
-    private void isBuying(bool input)
-    {
-        this.input = input;
+        yield return null;
     }
 }

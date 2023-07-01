@@ -3681,6 +3681,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!65 &302131683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6512,11 +6513,13 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
   Guns:
   - {fileID: 940464064}
   - {fileID: 676450069}
   - {fileID: 909534466}
   GunForSell: {fileID: 909534466}
+  player: Player
 --- !u!65 &464282566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6635,11 +6638,13 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
   Guns:
   - {fileID: 940464064}
   - {fileID: 909534466}
   - {fileID: 676450069}
   GunForSell: {fileID: 676450069}
+  player: Player
 --- !u!65 &465715881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9921,6 +9926,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!65 &593840272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10343,6 +10349,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!135 &634263857
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14606,6 +14613,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!135 &1016193901
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19077,6 +19085,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!65 &1216955000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20341,6 +20350,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!65 &1336615850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20651,6 +20661,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!135 &1347516996
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22310,6 +22321,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!135 &1471073529
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23897,11 +23909,13 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
   Guns:
   - {fileID: 940464064}
   - {fileID: 909534466}
   - {fileID: 676450069}
   GunForSell: {fileID: 940464064}
+  player: Player
 --- !u!65 &1635404100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31035,6 +31049,7 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
+  playerName: Player
 --- !u!135 &2115307308
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32346,6 +32361,14 @@ PrefabInstance:
       propertyPath: soundManager
       value: 
       objectReference: {fileID: 1262830250}
+    - target: {fileID: 7135667047651239555, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
+      propertyPath: hPoints
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135667047651239555, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
+      propertyPath: maxHealth
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
 --- !u!1001 &4024701463994951818
@@ -33139,7 +33162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9117562872853488435, guid: 29d266bc7df165f40821beab50ec8d69, type: 3}
       propertyPath: points
-      value: 300
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 9117562872853488435, guid: 29d266bc7df165f40821beab50ec8d69, type: 3}
       propertyPath: pointsText
