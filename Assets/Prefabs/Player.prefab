@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 2549975411988545629}
   - component: {fileID: 5665547698974144496}
   - component: {fileID: 2549975411988545619}
+  - component: {fileID: 7135667047651239555}
   - component: {fileID: 2549975411988545628}
   m_Layer: 0
   m_Name: Player
@@ -258,9 +259,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c814a93037c741b54152403e02654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealt: 1
-  healt: 1
-  timeToHealt: 3
+  Enemy: Enemy
+  soundManager: {fileID: 0}
+  healtPoints: {fileID: 0}
+  hit: {fileID: 0}
+  health: {fileID: 0}
+  timeToHeal: 0
 --- !u!114 &2549975411988545619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,8 +288,6 @@ MonoBehaviour:
   jumpCooldown: 0.15
   airMultiplier: 100
   isJumping: 0
-  readyToJump: 1
-  playerheight: 2
   ground:
     serializedVersion: 2
     m_Bits: 8
@@ -295,6 +297,20 @@ MonoBehaviour:
   groundDrag: 5
   maxDistanceGround: 0.6
   isGrounded: 0
+--- !u!114 &7135667047651239555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549975411988545631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3293f1293d66f7843adc125d714ed941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hPoints: 0
+  maxHealth: 0
 --- !u!114 &2549975411988545628
 MonoBehaviour:
   m_ObjectHideFlags: 0

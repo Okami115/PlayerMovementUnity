@@ -8,6 +8,10 @@ using UnityEngine.InputSystem;
 
 public class ShootRaycast : MonoBehaviour
 {
+    private const string enemy = "Enemy";
+    private const string shootnimation = "Shoot";
+    private const string reloadAnimation = "Reload";
+    private const string reloadState = "Reloading";
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform raycastController;
@@ -60,21 +64,20 @@ public class ShootRaycast : MonoBehaviour
             currentTimeToReload = timeToReload;
             reloading = false;
             //TODO: TP2 - SOLID
-            //TODO: Fix - Hardcoded value
-            shootingAnimator.SetBool("Reloading", false);
+            shootingAnimator.SetBool(reloadState, false);
         }
 
 
         if(canShoot && isShooting && timeToShoot > fireRate && bulletsInMagazine != 0 && !reloading) 
         {
-            //TODO: Fix - Hardcoded value
-            shootingAnimator.Play("Shoot");
+            shootingAnimator.Play(shootnimation);
             soundManager.PlaySound(ShootSound);
+
             RaycastHit hit;
+
             if (Physics.Raycast(raycastController.position, raycastController.forward,out hit, Range))
             {
-                //TODO: Fix - Hardcoded value
-                if(hit.transform.CompareTag("Enemy"))
+                if(hit.transform.CompareTag(enemy))
                 {
                     hit.transform.GetComponent<Health>().TakeDamage(damage);
                     gameManager.AddPoints(points);
@@ -103,8 +106,8 @@ public class ShootRaycast : MonoBehaviour
     {
         reloading = true;
         bulletsInMagazine = maxBulletsInMagazine;
-        shootingAnimator.SetBool("Reloading", true);
-        shootingAnimator.Play("Reload");
+        shootingAnimator.SetBool(reloadState, true);
+        shootingAnimator.Play(reloadAnimation);
         soundManager.PlaySound(ReloadSound);
     }
 
