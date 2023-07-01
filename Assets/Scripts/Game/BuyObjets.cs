@@ -24,11 +24,11 @@ public class BuyObjets : MonoBehaviour
     {
         mensages.text = $"press E to buy ({price})";
         Debug.Log(input);
-        if (input && gameManager.GetPoints() >= price)
+        if (input && gameManager.Credits >= price)
         {
             soundManager.PlaySound(buySound);
             Destroy(this.gameObject);
-            gameManager.AddPoints(-price);
+            gameManager.Credits -= price;
             mensages.text = $" ";
         }
 

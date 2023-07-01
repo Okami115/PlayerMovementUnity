@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameManager manager;
+    [SerializeField] private string enemy = "Enemy";
     [SerializeField] private int damage;
 
     private void Start()
@@ -14,11 +15,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //TODO: Fix - Hardcoded value
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.CompareTag(enemy))
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(100);
-            manager.AddPoints(damage);
+            manager.Credits += damage;
             Destroy(this.gameObject);
         }
     }

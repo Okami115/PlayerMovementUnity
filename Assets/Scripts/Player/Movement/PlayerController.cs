@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
-    //TODO: TP2 - Syntax - Consistency in naming convention
     [SerializeField] private Transform orientation;
-    [SerializeField] private Transform Pivot;
-    [SerializeField] private Rigidbody _rigidBody;
+    [SerializeField] private Transform pivot;
+    [SerializeField] private Rigidbody rigidBody;
 
     [Header("Movement Variables")]
     [SerializeField] private float moveSpeed = 10f;
@@ -38,16 +38,14 @@ public class PlayerController : MonoBehaviour
     public event Action Moving;
     public event Action Paused;
 
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    void Start()
+    private void Start()
     {
         //TODO: Fix - Add [RequireComponentAttribute]
-        _rigidBody = GetComponent<Rigidbody>();
-        _rigidBody.freezeRotation = true;
+        rigidBody = GetComponent<Rigidbody>();
+        rigidBody.freezeRotation = true;
     }
 
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         MovePlayer();
         JumpPlayer();
@@ -105,7 +103,7 @@ public class PlayerController : MonoBehaviour
             direction -=Vector3.Project(direction.normalized, hit.normal);
         }
         //TODO: Fix - Hardcoded value
-        _rigidBody.AddForce(direction.normalized * moveSpeed * 10f, ForceMode.Force);
+        rigidBody.AddForce(direction.normalized * moveSpeed * 10f, ForceMode.Force);
     }
     private void JumpPlayer()
     {
@@ -113,18 +111,18 @@ public class PlayerController : MonoBehaviour
         isGrounded = IsFloored(out hit, ground);
         if (isGrounded)
         {
-            _rigidBody.drag = groundDrag;
+            rigidBody.drag = groundDrag;
 
         }
         else
         {
-            _rigidBody.AddForce(Vector3.down * airMultiplier, ForceMode.Force);
-            _rigidBody.drag = 0;
+            rigidBody.AddForce(Vector3.down * airMultiplier, ForceMode.Force);
+            rigidBody.drag = 0;
         }
 
         if (isJumping && isGrounded && hit.distance <= maxDistanceGround)
         {
-            _rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumping = false;
         }
 
@@ -133,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsFloored(out RaycastHit hit, int layerMask)
     {
-        return Physics.Raycast(Pivot.position, Vector3.down, out hit, maxDistanceGround, layerMask);
+        return Physics.Raycast(pivot.position, Vector3.down, out hit, maxDistanceGround, layerMask);
     }
 
     //TODO: Fix - Unclear name
@@ -141,13 +139,13 @@ public class PlayerController : MonoBehaviour
     {
         moveSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
-        Vector3 flatVel = new Vector3(_rigidBody.velocity.x, 0f, _rigidBody.velocity.z);
+        Vector3 flatVel = new Vector3(rigidBody.velocity.x, 0f, rigidBody.velocity.z);
 
         if(flatVel.magnitude > moveSpeed)
         {
             Vector3 limit = flatVel.normalized * moveSpeed;
             //TODO: Fix - Controlling Rigidbody in Update instead of FixedUpdate
-            _rigidBody.velocity = new Vector3(limit.x, _rigidBody.velocity.y, limit.z);
+            rigidBody.velocity = new Vector3(limit.x, rigidBody.velocity.y, limit.z);
         }
 
     }

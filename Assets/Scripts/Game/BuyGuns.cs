@@ -25,7 +25,7 @@ public class BuyGuns : BuyObjets
             }
         }
 
-        if (!hasGun && input && gameManager.GetPoints() >= price)
+        if (!hasGun && input && gameManager.Credits >= price)
         {
             soundManager.PlaySound(buySound);
 
@@ -36,7 +36,7 @@ public class BuyGuns : BuyObjets
 
             GunForSell.SetActive(true);
 
-            gameManager.AddPoints(-price);
+            gameManager.Credits -= price;
             mensages.text = $" ";
         }
         else if (hasGun) 

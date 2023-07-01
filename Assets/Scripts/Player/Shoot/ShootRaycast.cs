@@ -80,7 +80,7 @@ public class ShootRaycast : MonoBehaviour
                 if(hit.transform.CompareTag(enemy))
                 {
                     hit.transform.GetComponent<Health>().TakeDamage(damage);
-                    gameManager.AddPoints(points);
+                    gameManager.Credits += points;
                 }
             }
 

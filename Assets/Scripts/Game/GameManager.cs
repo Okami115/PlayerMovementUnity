@@ -7,23 +7,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     //TODO: TP2 - SOLID
+    [SerializeField] private int credits;
     [SerializeField] private TextMeshProUGUI pointsText;
 
-    [SerializeField] private int points;
+    public int Credits { get => credits; set => credits = value; }
 
     void Update()
     {
-        pointsText.text = points.ToString();
-    }
-
-    public void AddPoints(int points)
-    {
-        this.points += points;
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public int GetPoints()
-    {
-        return points;
+        pointsText.text = credits.ToString();
     }
 }

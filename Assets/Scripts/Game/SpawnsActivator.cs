@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SpawnsActivator : MonoBehaviour
 {
-
+    [SerializeField] private string Tag = "Player";
     [SerializeField] private List<Transform> spawns;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag(Tag))
         {
             for(int i = 0; i < spawns.Count; i++) 
             {
@@ -20,7 +20,7 @@ public class SpawnsActivator : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag(Tag))
         {
             for (int i = 0; i < spawns.Count; i++)
             {
