@@ -6,9 +6,11 @@ using UnityEngine.Windows;
 
 public class BuyGuns : BuyObjets
 {
+
     //TODO: TP2 - SOLID
     [SerializeField] private List<GameObject> Guns;
     [SerializeField] private GameObject GunForSell;
+    [SerializeField] private string player = "Player";
     private bool hasGun;
 
     private void Update()
@@ -45,8 +47,7 @@ public class BuyGuns : BuyObjets
 
     private void OnTriggerEnter(Collider other)
     {
-        //TODO: Fix - Hardcoded value
-        if (other.tag == "Player")
+        if (other.tag == player)
         {
             canBuy = true;
             PlayerController.Buy += isBuying;
@@ -54,8 +55,7 @@ public class BuyGuns : BuyObjets
     }
     private void OnTriggerExit(Collider other)
     {
-        //TODO: Fix - Hardcoded value
-        if (other.tag == "Player")
+        if (other.tag == player)
         {
             canBuy = false;
             PlayerController.Buy -= isBuying;

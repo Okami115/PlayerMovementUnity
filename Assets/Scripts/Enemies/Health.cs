@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +7,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int hPoints;
+    [SerializeField] private int maxHealth;
     public event Action<Health> wasDefeated;
     public int HPoints { get => hPoints; set => hPoints = value; }
 
@@ -20,5 +19,10 @@ public class Health : MonoBehaviour
         {
             wasDefeated?.Invoke(this);
         }
+    }
+
+    public void RestartHP() 
+    {
+        HPoints = maxHealth;
     }
 }

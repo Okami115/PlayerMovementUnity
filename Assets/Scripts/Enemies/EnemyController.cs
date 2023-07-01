@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
-
+    [SerializeField] private string sceneName = "Tutorial";
     [SerializeField] private List<GameObject> listEnemies;
 
     [SerializeField] private Transform[] spawnPoints;
@@ -37,8 +37,7 @@ public class EnemyController : MonoBehaviour
             Mathf.Clamp(currentSpeed, 0, maxSpeed);
 
             //TODO: OOP - override      OR     TP2 - Strategy
-            //TODO: Fix - Hardcoded value
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName))
             {
                 //TODO: TP2 - SOLID
                 changeScene?.Invoke();

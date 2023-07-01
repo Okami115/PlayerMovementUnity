@@ -1,61 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] SoundManager soundManager;
-    [SerializeField] TextMeshProUGUI healtPoints;
+    [SerializeField] private string Enemy = "Enemy";
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private TextMeshProUGUI healtPoints;
     [SerializeField] private AudioClip hit;
-    [SerializeField] private int maxHealt;
-    [SerializeField] private int healt;
-    [SerializeField] private int timeToHealt;
-    private bool timerOn;
-    private float timer;
+    [SerializeField] private Health health;
+    [SerializeField]private float timeToHeal;
 
-    void Start()
+    private IEnumerator Healing()
     {
-        healt = maxHealt;
+        yield return new WaitForSeconds(timeToHeal);
+
+        health.RestartHP();
+    }
+
+    private void Start()
+    {
+        health = GetComponent<Health>();
     }
 
     void Update()
     {
-
         //TODO: TP2 - SOLID
-        healtPoints.text = healt.ToString();
+        healtPoints.text = health.HPoints.ToString();
 
-        //TODO: Fix - Could be a coroutine
-        if(timerOn)
-        {
-            timer += Time.deltaTime;
-
-            if(timer >= timeToHealt)
-            {
-                timer = 0;
-                timerOn = false;
-                healt = maxHealt;
-            }
-        }
-
-        if(healt <= 0) 
+        if(health.HPoints <= 0) 
         {
             //TODO: TP2 - SOLID
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        //TODO: Fix - Hardcoded value
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == Enemy)
         {
             soundManager.PlaySound(hit);
-            healt--;
-            timerOn = true;
+            health.TakeDamage(1);
+            StartCoroutine(Healing());
         }
     }
 }
