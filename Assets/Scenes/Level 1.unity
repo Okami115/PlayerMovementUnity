@@ -3678,9 +3678,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!65 &302131683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6507,15 +6507,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundManager: {fileID: 1262830250}
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
+  price: 3000
+  mensages: {fileID: 1560611192}
+  PlayerController: {fileID: 0}
+  gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
   Guns:
   - {fileID: 940464064}
   - {fileID: 676450069}
   - {fileID: 909534466}
   GunForSell: {fileID: 909534466}
-  gameManager: {fileID: 1952712158}
-  controller: {fileID: 25560302}
-  mensages: {fileID: 1560611192}
-  price: 3000
 --- !u!65 &464282566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6629,15 +6630,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundManager: {fileID: 1262830250}
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
+  price: 500
+  mensages: {fileID: 1560611192}
+  PlayerController: {fileID: 0}
+  gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
   Guns:
   - {fileID: 940464064}
   - {fileID: 909534466}
   - {fileID: 676450069}
   GunForSell: {fileID: 676450069}
-  gameManager: {fileID: 1952712158}
-  controller: {fileID: 25560302}
-  mensages: {fileID: 1560611192}
-  price: 500
 --- !u!65 &465715881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9916,9 +9918,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!65 &593840272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10338,9 +10340,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!135 &634263857
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14601,9 +14603,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!135 &1016193901
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19072,9 +19074,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!65 &1216955000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20336,9 +20338,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!65 &1336615850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20646,9 +20648,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!135 &1347516996
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22305,9 +22307,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!135 &1471073529
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23890,15 +23892,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundManager: {fileID: 1262830250}
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
+  price: 1500
+  mensages: {fileID: 1560611192}
+  PlayerController: {fileID: 0}
+  gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
   Guns:
   - {fileID: 940464064}
   - {fileID: 909534466}
   - {fileID: 676450069}
   GunForSell: {fileID: 940464064}
-  gameManager: {fileID: 1952712158}
-  controller: {fileID: 25560302}
-  mensages: {fileID: 1560611192}
-  price: 1500
 --- !u!65 &1635404100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31029,9 +31032,9 @@ MonoBehaviour:
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
   mensages: {fileID: 1560611192}
-  Player: {fileID: 0}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
+  Player: {fileID: 0}
 --- !u!135 &2115307308
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32404,6 +32407,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 474342008}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: 0ef06b4bd40182e43ba890e078abf709, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
 --- !u!1001 &6689217513940149065
@@ -32784,6 +32791,10 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 25560302}
+    - target: {fileID: 2587326866556971225, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}
+      propertyPath: raycastController
+      value: 
+      objectReference: {fileID: 1438203791}
     - target: {fileID: 3676317036041921159, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}
       propertyPath: ShootSound
       value: 
@@ -32814,6 +32825,10 @@ PrefabInstance:
       objectReference: {fileID: 25560302}
     - target: {fileID: 3676317036041921159, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}
       propertyPath: RaycastController
+      value: 
+      objectReference: {fileID: 1438203791}
+    - target: {fileID: 3676317036041921159, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}
+      propertyPath: raycastController
       value: 
       objectReference: {fileID: 1438203791}
     - target: {fileID: 4183419262719277525, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}

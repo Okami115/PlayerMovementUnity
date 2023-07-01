@@ -8,10 +8,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private List<GameObject> listEnemies;
 
-
     [SerializeField] private Transform[] spawnPoints;
 
-    //TODO: BUG - Change Type to EnemyMovement to be able to call GetComponent without nullExceptions
     [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private Transform target;
@@ -26,22 +24,12 @@ public class EnemyController : MonoBehaviour
 
     public event System.Action changeScene;
 
-    void Update()
+    private void DestroyEnemy(Health health)
     {
+        enemySpawnLimit++;
+        listEnemies.Remove(health.gameObject);
+        Destroy(health.gameObject);
 
-        for (int i = 0; i < listEnemies.Count; i++)
-        {
-            //TODO: Fix - Should be event based
-            if (listEnemies[i].GetComponent<Health>().HPoints < 0)
-            {
-                //TODO: OOP - Objects should control themselves
-                Destroy(listEnemies[i].gameObject);
-                listEnemies.Remove(listEnemies[i]);
-                enemySpawnLimit++;
-            }
-        }
-
-        //TODO: Fix - Should be event based
         if (listEnemies.Count == 0)
         {
             currentSpeed = currentSpeed * (round * SpeedMultiplier);
@@ -50,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
             //TODO: OOP - override      OR     TP2 - Strategy
             //TODO: Fix - Hardcoded value
-            if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial"))
             {
                 //TODO: TP2 - SOLID
                 changeScene?.Invoke();
@@ -59,13 +47,25 @@ public class EnemyController : MonoBehaviour
             {
                 for (int i = 0; i < enemySpawnLimit; i++)
                 {
+                    // new spawner
                     int rand = Random.Range(0, spawnPoints.Length);
-
-                    listEnemies.Add(Instantiate(enemyPrefab, spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation));
-                    listEnemies[i].GetComponent<EnemyMovement>().Target = target;
+                    SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
                 }
             }
         }
     }
 
+    private void SpawnEnemy(Vector3 position, Quaternion rotation)
+    {
+        GameObject newEnemy = Instantiate(enemyPrefab, position, rotation);
+        listEnemies.Add(newEnemy);
+        if (newEnemy.TryGetComponent(out Health health))
+        {
+            health.wasDefeated += DestroyEnemy;
+        }
+        if (newEnemy.TryGetComponent(out EnemyMovement enemyMovement))
+        {
+            enemyMovement.Target = target;
+        }
+    }
 }

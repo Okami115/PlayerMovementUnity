@@ -5,8 +5,6 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    //TODO: TP2 - Remove unused methods/variables/classes
-    public static SoundManager Instance;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectSource;
     [SerializeField] public AudioClip button;

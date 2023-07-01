@@ -28,6 +28,8 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] private float timeToReload;
     [SerializeField] private float currentTimeToReload;
 
+    [SerializeField] private int points = 10;
+
     [SerializeField] private int damage;
     [SerializeField]private float fireRate;
     private float timeToShoot;
@@ -75,8 +77,7 @@ public class ShootRaycast : MonoBehaviour
                 if(hit.transform.CompareTag("Enemy"))
                 {
                     hit.transform.GetComponent<Health>().TakeDamage(damage);
-                    //TODO: Fix - Hardcoded value
-                    gameManager.AddPoints(10);
+                    gameManager.AddPoints(points);
                 }
             }
 
@@ -100,16 +101,11 @@ public class ShootRaycast : MonoBehaviour
 
     public void Reload()
     {
-        //TODO: Fix - Repeated code
-        if(!reloading && bulletsInMagazine != maxBulletsInMagazine)
-        {
-            reloading = true;
-            bulletsInMagazine = maxBulletsInMagazine;
-            shootingAnimator.SetBool("Reloading", true);
-            shootingAnimator.Play("Reload");
-            soundManager.PlaySound(ReloadSound);
-
-        }
+        reloading = true;
+        bulletsInMagazine = maxBulletsInMagazine;
+        shootingAnimator.SetBool("Reloading", true);
+        shootingAnimator.Play("Reload");
+        soundManager.PlaySound(ReloadSound);
     }
 
 

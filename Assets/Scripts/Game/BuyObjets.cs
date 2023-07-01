@@ -9,17 +9,15 @@ using UnityEngine.InputSystem;
 public class BuyObjets : MonoBehaviour
 {
     //TODO: TP2 - SOLID
-    [SerializeField] private SoundManager soundManager;
-    [SerializeField] private AudioClip buySound;
-    [SerializeField] private int price;
-    [SerializeField] private TextMeshProUGUI mensages;
-    [SerializeField] private GameObject Player;
-    [SerializeField] private PlayerController PlayerController;
-    [SerializeField] private GameManager gameManager;
-    bool canBuy = false;
-
-
-    private bool input;
+    [SerializeField] protected SoundManager soundManager;
+    [SerializeField] protected AudioClip buySound;
+    [SerializeField] protected int price;
+    [SerializeField] protected TextMeshProUGUI mensages;
+    [SerializeField] protected PlayerController PlayerController;
+    [SerializeField] protected GameManager gameManager;
+    [SerializeField] protected GameObject Player;
+    protected bool canBuy = false;
+    protected bool input;
 
     private void Start()
     {
@@ -27,12 +25,8 @@ public class BuyObjets : MonoBehaviour
         PlayerController = Player.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
-
         if(canBuy)
         {
             mensages.text = $"press E to buy ({price})";

@@ -7,9 +7,6 @@ using UnityEngine.AI;
 /// This is a component to can move the enemy with NavMesh in the tutorial.
 /// It is used to move the enemy towards random target and changes the target when it reaches the objetive. 
 /// </summary> 
-
-
-
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovementTutorial : MonoBehaviour
 {
@@ -18,29 +15,25 @@ public class EnemyMovementTutorial : MonoBehaviour
     
 
     private float minDistance = 5;
-    IEnumerator Move()
+    private IEnumerator Move()
     {
-        if (agent.remainingDistance <= minDistance) 
+        while (gameObject.activeSelf) 
         {
+            yield return new WaitUntil(IsOnTarget);
+
             int rand = Random.Range(0, target.Length);
             agent.destination = target[rand].position;
-            yield return new WaitForSeconds(1f);
         }
-
     }
 
-
-
-    void Start()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        int rand = Random.Range(0, target.Length);
-        agent.destination = target[rand].position;
         StartCoroutine(Move());
     }
 
-    void Update()
+    private bool IsOnTarget()
     {
-        //TODO: Fix - Could be a coroutine where you calculate the arriving time and yield a waitForSeconds
+        return (agent.remainingDistance <= minDistance);
     }
 }
