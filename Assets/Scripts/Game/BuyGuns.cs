@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class BuyGuns : BuyObjets
 {
@@ -10,7 +8,6 @@ public class BuyGuns : BuyObjets
     //TODO: TP2 - SOLID
     [SerializeField] private List<GameObject> Guns;
     [SerializeField] private GameObject GunForSell;
-    [SerializeField] private string player = "Player";
     private bool hasGun;
 
     protected override IEnumerator Canbuy()

@@ -1,23 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(Animator))]
 public class ShootRaycast : MonoBehaviour
 {
-    private const string enemy = "Enemy";
-    private const string shootnimation = "Shoot";
-    private const string reloadAnimation = "Reload";
-    private const string reloadState = "Reloading";
+    [SerializeField]private string enemy = "Enemy";
+    [SerializeField]private string shootnimation = "Shoot";
+    [SerializeField]private string reloadAnimation = "Reload";
+    [SerializeField]private string reloadState = "Reloading";
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform raycastController;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private TextMeshProUGUI maxBullets;
-    [SerializeField] private TextMeshProUGUI currentBullets;
     [SerializeField] Animator shootingAnimator;
     [SerializeField] private float Range;
     [SerializeField] bool isAutomatic;
@@ -41,12 +36,14 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] private int bulletsInMagazine;
     [SerializeField] private int maxBulletsInMagazine;
 
+    public int BulletsInMagazine { get => bulletsInMagazine; set => bulletsInMagazine = value; }
+    public int MaxBulletsInMagazine { get => maxBulletsInMagazine; set => maxBulletsInMagazine = value; }
 
     void Start()
     {
         shootingAnimator = GetComponent<Animator>();
 
-        bulletsInMagazine = maxBulletsInMagazine;
+        BulletsInMagazine = MaxBulletsInMagazine;
         playerController.Shoot += Shoot;
         playerController.Reload += Reload;
     }
@@ -68,7 +65,7 @@ public class ShootRaycast : MonoBehaviour
         }
 
 
-        if(canShoot && isShooting && timeToShoot > fireRate && bulletsInMagazine != 0 && !reloading) 
+        if(canShoot && isShooting && timeToShoot > fireRate && BulletsInMagazine != 0 && !reloading) 
         {
             shootingAnimator.Play(shootnimation);
             soundManager.PlaySound(ShootSound);
@@ -84,7 +81,7 @@ public class ShootRaycast : MonoBehaviour
                 }
             }
 
-            bulletsInMagazine--;
+            BulletsInMagazine--;
             timeToShoot = 0;
         }
 
@@ -92,9 +89,6 @@ public class ShootRaycast : MonoBehaviour
         {
             isShooting = false;
         }
-
-        maxBullets.text = maxBulletsInMagazine.ToString();
-        currentBullets.text = bulletsInMagazine.ToString();
     }
 
     public void Shoot(bool input)
@@ -105,7 +99,7 @@ public class ShootRaycast : MonoBehaviour
     public void Reload()
     {
         reloading = true;
-        bulletsInMagazine = maxBulletsInMagazine;
+        BulletsInMagazine = MaxBulletsInMagazine;
         shootingAnimator.SetBool(reloadState, true);
         shootingAnimator.Play(reloadAnimation);
         soundManager.PlaySound(ReloadSound);

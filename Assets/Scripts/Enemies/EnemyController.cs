@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private string sceneName = "Tutorial";
+
     [SerializeField] private List<GameObject> listEnemies;
 
     [SerializeField] private Transform[] spawnPoints;
@@ -20,9 +20,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float maxSpeed = 50;
     [SerializeField] private float SpeedMultiplier = 0.5f;
 
-    private int round = 1;
+    public event System.Action endRound;
 
-    public event System.Action changeScene;
+    private int round = 1;
 
     private void Start()
     {
@@ -38,25 +38,19 @@ public class EnemyController : MonoBehaviour
 
         if (listEnemies.Count == 0)
         {
+            endRound?.Invoke();
+
             currentSpeed = currentSpeed * (round * SpeedMultiplier);
 
             Mathf.Clamp(currentSpeed, 0, maxSpeed);
 
-            //TODO: OOP - override      OR     TP2 - Strategy
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneName))
+            for (int i = 0; i < enemySpawnLimit; i++)
             {
-                //TODO: TP2 - SOLID
-                changeScene?.Invoke();
+                //Go to new spawner
+                int rand = Random.Range(0, spawnPoints.Length);
+                SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
             }
-            else
-            {
-                for (int i = 0; i < enemySpawnLimit; i++)
-                {
-                    // new spawner
-                    int rand = Random.Range(0, spawnPoints.Length);
-                    SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
-                }
-            }
+            
         }
     }
 

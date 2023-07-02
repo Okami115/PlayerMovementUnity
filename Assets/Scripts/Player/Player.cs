@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Health))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private string Enemy = "Enemy";
@@ -12,29 +15,18 @@ public class Player : MonoBehaviour
     [SerializeField] private Health health;
     [SerializeField]private float timeToHeal;
 
+    public Health Health { get => health; set => health = value; }
+
     private IEnumerator Healing()
     {
         yield return new WaitForSeconds(timeToHeal);
 
-        health.RestartHP();
+        Health.RestartHP();
     }
 
     private void Start()
     {
-        health = GetComponent<Health>();
-    }
-
-    void Update()
-    {
-        //TODO: TP2 - SOLID
-        healtPoints.text = health.HPoints.ToString();
-
-        if(health.HPoints <= 0) 
-        {
-            //TODO: TP2 - SOLID
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
-        }
-
+        Health = GetComponent<Health>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,7 +34,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == Enemy)
         {
             soundManager.PlaySound(hit);
-            health.TakeDamage(1);
+            Health.TakeDamage(1);
             StartCoroutine(Healing());
         }
     }

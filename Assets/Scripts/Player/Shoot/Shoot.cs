@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Animator))]
 public class Shoot : MonoBehaviour
 {
+    [SerializeField]private string reloadingState = "Reloading";
+    [SerializeField]private string reloadAnimation = "Reload";
+    [SerializeField]private string shootAnimation = "Shoot";
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private TextMeshProUGUI maxBullets;
-    [SerializeField] private TextMeshProUGUI currentBullets;
     [SerializeField] private Animator shootingAnimator;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private GameObject bullet;
@@ -27,96 +30,90 @@ public class Shoot : MonoBehaviour
 
     [SerializeField] private float shootRateTime;
 
-    [SerializeField] private bool isShooting = false;
-
     [SerializeField] private int bulletsInMagazine;
     [SerializeField] private int maxBulletsInMagazine;
 
+    public int BulletsInMagazine { get => bulletsInMagazine; set => bulletsInMagazine = value; }
+    public int MaxBulletsInMagazine { get => maxBulletsInMagazine; set => maxBulletsInMagazine = value; }
 
-    void Update()
+    private IEnumerator ReloadAnimation()
     {
-        //TODO: Fix - Should be event based
-        maxBullets.text = maxBulletsInMagazine.ToString();
-        currentBullets.text = bulletsInMagazine.ToString();
+        reloading = true;
+        shootingAnimator.SetBool(reloadingState, true);
 
-        //TODO: Fix - Could be a coroutine
-        if (reloading)
-        {
-            currentTimeToReload -= Time.deltaTime;
-        }
-        if (currentTimeToReload < 0)
-        {
-            currentTimeToReload = timeToReload;
-            reloading = false;
-            shootingAnimator.SetBool("Reloading", false);
-        }
+        yield return new WaitForSeconds(timeToReload);
 
-        //TODO: Fix - Could be a coroutine
-        if (Time.time > shootRateTime && isShooting && bulletsInMagazine > 0 && !reloading)
-        {
-            //TODO: TP2 - SOLID
-            //TODO: Fix - Hardcoded value
-            shootingAnimator.Play("Shoot");
-            soundManager.PlaySound(ShootSound);
-
-            GameObject newBullet;
-
-            newBullet = Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
-
-            newBullet.GetComponent<Rigidbody>().AddForce(spawnBullet.forward * shootForce);
-
-            shootRateTime = Time.time + shootRate;
-
-            bulletsInMagazine--;
-
-            Destroy(newBullet, 2);
-        }
-
-        if (!isAutomatic && isShooting)
-        {
-            isShooting = false;
-        }
-
+        reloading = false;
+        shootingAnimator.SetBool(reloadingState, false);
     }
-
-    //TODO: TP2 - Syntax - Consistency in access modifiers (private/protected/public/etc)
-    void Start()
-    {
-        shootingAnimator = GetComponent<Animator>();
-
-        bulletsInMagazine = maxBulletsInMagazine;
-        playerController.Shoot += PhisicShoot;
-        playerController.Reload += Reload;
-    }
-
-    //TODO: Fix - Should be native Setter/Getter
-    public int getCurrentBullets()
-    {
-        return bulletsInMagazine;
-    }
-    //TODO: Fix - Should be native Setter/Getter
-    public int getMaxBullets()
-    {
-        return maxBulletsInMagazine;
-    }
-
-    public void PhisicShoot(bool input)
-    {
-        isShooting = input;
-    }
-
     public void Reload()
     {
-        if (!reloading && bulletsInMagazine != maxBulletsInMagazine)
+        if (!reloading && BulletsInMagazine != MaxBulletsInMagazine)
         {
             reloading = true;
-            bulletsInMagazine = maxBulletsInMagazine;
-            //TODO: Fix - Hardcoded value
-            shootingAnimator.SetBool("Reloading", true);
-            //TODO: Fix - Hardcoded value
-            shootingAnimator.Play("Reload");
+            BulletsInMagazine = MaxBulletsInMagazine;
+            shootingAnimator.SetBool(reloadingState, true);
+            shootingAnimator.Play(reloadAnimation);
             soundManager.PlaySound(ReloadSound);
 
         }
     }
+
+    private IEnumerator ShootBullet()
+    {
+        if (Time.time > shootRateTime)
+        {
+            //TODO: TP2 - SOLID
+            shootingAnimator.Play(shootAnimation);
+            soundManager.PlaySound(ShootSound);
+
+            GameObject newBullet = Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
+            newBullet.GetComponent<Rigidbody>().AddForce(spawnBullet.forward * shootForce);
+
+            shootRateTime = Time.time + shootRate;
+
+            BulletsInMagazine--;
+
+            Destroy(newBullet, 2);
+        }
+
+        yield return null;
+    }
+    public void PhisicShoot(bool input)
+    {
+        if (input && BulletsInMagazine > 0 && !reloading)
+        {
+            StartCoroutine(ShootBullet());
+        }
+
+        if (!isAutomatic)
+        {
+            StopCoroutine(ShootBullet());
+        }
+    }
+
+    private void Start()
+    {
+        shootingAnimator = GetComponent<Animator>();
+
+        BulletsInMagazine = MaxBulletsInMagazine;
+        playerController.Shoot += PhisicShoot;
+        playerController.Reload += Reload;
+    }
+
+    void Update()
+    {
+
+        if (reloading)
+        {
+            currentTimeToReload -= Time.deltaTime;
+            if (currentTimeToReload < 0)
+            {
+                StartCoroutine(ReloadAnimation());
+                currentTimeToReload = timeToReload;
+            }
+        }
+    }
+
+
 }

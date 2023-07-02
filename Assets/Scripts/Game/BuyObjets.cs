@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class BuyObjets : MonoBehaviour
 {
@@ -23,7 +19,6 @@ public class BuyObjets : MonoBehaviour
     protected virtual IEnumerator Canbuy()
     {
         mensages.text = $"press E to buy ({price})";
-        Debug.Log(input);
         if (input && gameManager.Credits >= price)
         {
             soundManager.PlaySound(buySound);

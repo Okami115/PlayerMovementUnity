@@ -9,32 +9,29 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource effectSource;
     [SerializeField] public AudioClip button;
 
+    public AudioSource MusicSource { get => musicSource; set => musicSource = value; }
+
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);
     }
 
-    //TODO: Fix - Should be native Setter/Getter
-    public AudioSource GetMusicSource()
-    {
-        return musicSource;
-    }
     public void ToggleAudio()
     {
         effectSource.mute = !effectSource.mute;
-        musicSource.mute = !musicSource.mute;
+        MusicSource.mute = !MusicSource.mute;
         PlaySound(button);
     }
 
     public void PlayMusic(AudioClip clip)
     {
-        musicSource.clip = clip;
-        musicSource.Play();
+        MusicSource.clip = clip;
+        MusicSource.Play();
     }
 
     public void StopMusic()
     {
-        musicSource.Stop();
+        MusicSource.Stop();
     }
 
 }
