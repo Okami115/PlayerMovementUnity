@@ -58,7 +58,7 @@ namespace Inputs
                 },
                 {
                     ""name"": ""Camera"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""362f24f4-e094-4a9e-9156-7af0e923ece4"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",

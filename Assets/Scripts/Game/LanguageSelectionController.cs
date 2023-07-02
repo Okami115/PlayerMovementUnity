@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class LanguageSelectionController : MonoBehaviour
 {
     private const string Key = "Language";
-    [SerializeField] int indexScene;
-    [SerializeField] int indexLanguageScene;
+    [SerializeField] private int indexScene;
+    [SerializeField] private int indexLanguageScene;
     //TODO: Fix - Wrong name prevents unity message call
-    void Awake()
+    private void Awake()
     {
         if (!PlayerPrefs.HasKey(Key))
         {

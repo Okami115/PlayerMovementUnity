@@ -1,10 +1,9 @@
-using Inputs;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-
-    private @PlayerInputs controls;
+    [SerializeField] private PlayerController controller;
 
     [SerializeField] private float mouseSensitivity = 100f;
     private Vector2 mouseLooK;
@@ -14,34 +13,16 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Transform orientation;
 
-
-    private void Awake()
+    private void Start()
     {
-        controls = new @PlayerInputs();
+        controller = FindAnyObjectByType<PlayerController>();
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        controller.Locking += inputCamera;
     }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
- 
 
     private void Update()
     {
-        //TODO: Fix - Trash code
-        OnCamera();
-    }
-
-    public void OnCamera()
-    {
-        mouseLooK = controls.World.Camera.ReadValue<Vector2>();
-
         float mouseX = mouseLooK.x * mouseSensitivity * Time.deltaTime;
         float mouseY = mouseLooK.y * mouseSensitivity * Time.deltaTime;
 
@@ -52,6 +33,11 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+    private void inputCamera(Vector2 input)
+    {
+        mouseLooK = input;
     }
     
 }

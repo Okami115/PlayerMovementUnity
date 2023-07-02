@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 2549975411988545629}
   - component: {fileID: 5665547698974144496}
   - component: {fileID: 2549975411988545619}
+  - component: {fileID: 9011117593825027199}
   - component: {fileID: 7135667047651239555}
   - component: {fileID: 2549975411988545628}
   m_Layer: 0
@@ -277,25 +278,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583e9ffb5c7b4d0488d29f8dcaf7f19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 2549975410863324798}
-  Pivot: {fileID: 2549975411631924930}
-  _rigidBody: {fileID: 2549975411988545629}
+  playerMovement: {fileID: 0}
+--- !u!114 &9011117593825027199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549975411988545631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04017ddf07380b845bcee687b510ae61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 0}
+  pivot: {fileID: 0}
+  rigidBody: {fileID: 0}
   moveSpeed: 10
   walkSpeed: 10
-  sprintSpeed: 20
-  isSprinting: 0
-  jumpForce: 25
-  jumpCooldown: 0.15
-  airMultiplier: 100
-  isJumping: 0
+  sprintSpeed: 30
+  speedMultiplier: 10
+  jumpForce: 0
+  airMultiplier: 10
+  jumpCooldown: 0
   ground:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   stairs:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   groundDrag: 5
-  maxDistanceGround: 0.6
+  maxDistanceGround: 0.5
   isGrounded: 0
 --- !u!114 &7135667047651239555
 MonoBehaviour:
