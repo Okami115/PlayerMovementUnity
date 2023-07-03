@@ -8,25 +8,24 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Animator))]
 public class Shoot : MonoBehaviour
 {
-    [SerializeField]private string reloadingState = "Reloading";
-    [SerializeField]private string reloadAnimation = "Reload";
-    [SerializeField]private string shootAnimation = "Shoot";
+    [SerializeField] private string reloadingState = "Reloading";
+    [SerializeField] private string reloadAnimation = "Reload";
+    [SerializeField] private string shootAnimation = "Shoot";
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator shootingAnimator;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private GameObject bullet;
-    [SerializeField] AudioClip ShootSound;
-    [SerializeField] AudioClip ReloadSound;
+    [SerializeField] private AudioClip ShootSound;
+    [SerializeField] private AudioClip ReloadSound;
 
     [SerializeField] private float shootRate;
     [SerializeField] private float shootForce; 
     [SerializeField] bool isAutomatic;
 
-    //TODO: TP2 - Syntax - Fix declaration order
-    private bool reloading = false;
     [SerializeField] private float timeToReload;
     [SerializeField] private float currentTimeToReload;
+    private bool reloading = false;
 
     [SerializeField] private float shootRateTime;
 

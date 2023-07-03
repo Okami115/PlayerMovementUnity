@@ -1,35 +1,40 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class BuyObjets : MonoBehaviour
 {
-
-    //TODO: TP2 - SOLID
-    [SerializeField] protected SoundManager soundManager;
-    [SerializeField] protected AudioClip buySound;
-    [SerializeField] protected int price;
-    [SerializeField] protected TextMeshProUGUI mensages;
+    [SerializeField] private int price;
     [SerializeField] protected PlayerController PlayerController;
     [SerializeField] protected GameManager gameManager;
     [SerializeField] protected GameObject Player;
     [SerializeField] private string playerName = "Player";
     protected bool input;
 
+    public int Price { get => price; set => price = value; }
+
+    public event Action sell;
+    public event Action<BuyObjets> onCustomerExit;
+    public event Action<BuyObjets> onCustomerEnter;
+
     protected virtual IEnumerator Canbuy()
     {
-        mensages.text = $"press E to buy ({price})";
-        if (input && gameManager.Credits >= price)
+        
+        if (input && gameManager.Credits >= Price)
         {
-            soundManager.PlaySound(buySound);
             Destroy(this.gameObject);
-            gameManager.Credits -= price;
-            mensages.text = $" ";
+            Sell(Price);
         }
 
         yield return null;
     }
 
+    protected virtual void Sell(int price)
+    {
+        gameManager.Credits -= price;
+        sell?.Invoke();
+    }
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag(playerName);
@@ -40,6 +45,7 @@ public class BuyObjets : MonoBehaviour
     {
         if (other.tag == playerName)
         {
+            onCustomerEnter.Invoke(this);
             StartCoroutine(Canbuy());
             PlayerController.Buy += isBuying;
         }
@@ -50,7 +56,7 @@ public class BuyObjets : MonoBehaviour
         {
             StopCoroutine(Canbuy());
             PlayerController.Buy -= isBuying;
-            mensages.text = $" ";
+            onCustomerExit.Invoke(this);
         }
     }
 

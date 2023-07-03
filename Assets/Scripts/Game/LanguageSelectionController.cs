@@ -6,20 +6,19 @@ public class LanguageSelectionController : MonoBehaviour
     private const string Key = "Language";
     [SerializeField] private int indexScene;
     [SerializeField] private int indexLanguageScene;
-    //TODO: Fix - Wrong name prevents unity message call
+
+    [SerializeField] private LevelLoader levelLoader;
     private void Awake()
     {
+        levelLoader = new LevelLoader();
         if (!PlayerPrefs.HasKey(Key))
         {
-            //TODO: TP2 - SOLID
-            SceneManager.LoadScene(indexLanguageScene);
+            levelLoader.LoadLevel1(indexLanguageScene);
         }
         else
         {
-            //TODO: TP2 - SOLID
-            SceneManager.LoadScene(indexScene);
+            levelLoader.LoadLevel1(indexScene);
         }
-
     }
 
 

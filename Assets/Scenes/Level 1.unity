@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0ffaa0b7117ba8c47a9d05ae701d4b4d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -3674,10 +3674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -6475,6 +6472,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9e662e35c248963458706e6f13c2a142, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4631fc14c94e83d4d81c8136d9ac1a05, type: 3}
+--- !u!1 &456684937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9117562872853488432, guid: 29d266bc7df165f40821beab50ec8d69, type: 3}
+  m_PrefabInstance: {fileID: 9117562873057175277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &464282564
 GameObject:
   m_ObjectHideFlags: 0
@@ -6506,10 +6508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b188cf6616cd840bf745a84d3bca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 3000
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -6630,10 +6629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b188cf6616cd840bf745a84d3bca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -9917,10 +9913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -10340,10 +10333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -14629,10 +14619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -19112,10 +19099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -20377,10 +20361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 750
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -20688,10 +20669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -22348,10 +22326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -23936,10 +23911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b188cf6616cd840bf745a84d3bca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 1500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -28254,12 +28226,28 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9117562872853488435, guid: 29d266bc7df165f40821beab50ec8d69, type: 3}
   m_PrefabInstance: {fileID: 9117562873057175277}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 456684937}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f16b6942186ff349a98c75367380b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1952712160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456684937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bdaf4639c236e409a1d52e69cbb925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundManager: {fileID: 1262830250}
+  buyObjets: []
+  buyGuns: []
+  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
 --- !u!1 &1959580883
 GameObject:
   m_ObjectHideFlags: 0
@@ -31102,10 +31090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca7017c8853e214887b37e73d7a1c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 1262830250}
-  buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
   price: 500
-  mensages: {fileID: 1560611192}
   PlayerController: {fileID: 0}
   gameManager: {fileID: 1952712158}
   Player: {fileID: 0}
@@ -32623,6 +32608,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1647163306}
+    - target: {fileID: 1650360138708760403, guid: e1834a2766834834abf7601b8501317d, type: 3}
+      propertyPath: messages
+      value: 
+      objectReference: {fileID: 1560611192}
     - target: {fileID: 1650360138708760403, guid: e1834a2766834834abf7601b8501317d, type: 3}
       propertyPath: controller
       value: 

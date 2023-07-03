@@ -11,6 +11,10 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject panel;
 
+    [SerializeField] private TextMeshProUGUI messages;
+    [SerializeField] private BuyObjets[] buyObjets;
+    [SerializeField] private BuyGuns[] buyGuns;
+
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI healtPoints;
     [SerializeField] private TextMeshProUGUI maxBullets;
@@ -21,6 +25,23 @@ public class HUD : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         controller = FindAnyObjectByType<PlayerController>();
+
+        buyObjets = FindObjectsOfType<BuyObjets>();
+        buyGuns = FindObjectsOfType<BuyGuns>();
+
+        for (int i = 0; i < buyObjets.Length; i++)
+        {
+            buyObjets[i].sell += BuyObjet;
+            buyObjets[i].onCustomerExit += ExitToBuyZone;
+            buyObjets[i].onCustomerEnter += EnterToBuyZone;
+        }
+
+        for (int i = 0; i < buyGuns.Length; i++)
+        {
+            buyGuns[i].sell += BuyObjet;
+            buyGuns[i].onCustomerExit += ExitToBuyZone;
+            buyGuns[i].onCustomerEnter += EnterToBuyZone;
+        }
 
         panel.SetActive(false);
         controller.Paused += Pause;
@@ -45,6 +66,21 @@ public class HUD : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         panel?.SetActive(false);
+    }
+
+    private void BuyObjet()
+    {
+        messages.text = " ";
+    }
+
+    private void EnterToBuyZone(BuyObjets buyObjets)
+    {
+        messages.text = $"press E to buy ({buyObjets.Price})";
+    }
+
+    private void ExitToBuyZone(BuyObjets buyObjets)
+    {
+        messages.text = " ";
     }
 
     private void ShowCurrentBullets()

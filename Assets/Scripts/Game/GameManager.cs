@@ -9,13 +9,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string sceneNameTutorial = "Tutorial";
     [SerializeField] private string sceneNameLevel1 = "Level 1";
 
-    //TODO: TP2 - SOLID
     [SerializeField] private EnemyController enemyController;
 
     [SerializeField] private Player player;
     [SerializeField] private Health playerHealth;
     [SerializeField] private int credits;
-    
 
     public int Credits { get => credits; set => credits = value; }
 
@@ -23,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         playerHealth = player.Health;
         playerHealth.wasDefeated += playerDefeat;
-        enemyController.endRound += enemyDefeat;
+        enemyController.endRound += HandleAllEnemiesAreDefeated;
     }
 
     private void playerDefeat(Health playerHealth)
@@ -31,7 +29,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneNameMenu, LoadSceneMode.Single);
     }
 
-    private void enemyDefeat()
+    private void HandleAllEnemiesAreDefeated()
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneNameTutorial))
         {

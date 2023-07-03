@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform target;
 
     [SerializeField] private int enemySpawnLimit = 1;
+    [SerializeField] private int enemyCountRoundIncrement = 3;
 
     [SerializeField] private float currentSpeed = 10;
     [SerializeField] private float maxSpeed = 50;
@@ -32,7 +34,6 @@ public class EnemyController : MonoBehaviour
 
     private void DestroyEnemy(Health health)
     {
-        enemySpawnLimit++;
         listEnemies.Remove(health.gameObject);
         Destroy(health.gameObject);
 
@@ -40,6 +41,7 @@ public class EnemyController : MonoBehaviour
         {
             endRound?.Invoke();
 
+            enemySpawnLimit += enemyCountRoundIncrement;
             currentSpeed = currentSpeed * (round * SpeedMultiplier);
 
             Mathf.Clamp(currentSpeed, 0, maxSpeed);

@@ -9,11 +9,11 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField]private string shootnimation = "Shoot";
     [SerializeField]private string reloadAnimation = "Reload";
     [SerializeField]private string reloadState = "Reloading";
+    [SerializeField] Animator shootingAnimator;
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform raycastController;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] Animator shootingAnimator;
     [SerializeField] private float Range;
     [SerializeField] bool isAutomatic;
 
