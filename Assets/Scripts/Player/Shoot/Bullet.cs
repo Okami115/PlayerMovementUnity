@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains the logic of the bullet
+/// </summary>
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameManager manager;

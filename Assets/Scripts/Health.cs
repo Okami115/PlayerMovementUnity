@@ -11,6 +11,10 @@ public class Health : MonoBehaviour
     public event Action<Health> wasDefeated;
     public int HPoints { get => hPoints; set => hPoints = value; }
 
+    /// <summary>
+    /// Takes damage and subtracts it from HP
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         hPoints -= damage;
@@ -21,6 +25,9 @@ public class Health : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restore HP to max
+    /// </summary>
     public void RestartHP() 
     {
         HPoints = maxHealth;

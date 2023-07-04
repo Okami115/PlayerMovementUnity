@@ -15,6 +15,11 @@ public class EnemyMovementTutorial : MonoBehaviour
     
 
     private float minDistance = 5;
+
+    /// <summary>
+    /// Execute the movement of the enemy within the tutorial
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Move()
     {
         while (gameObject.activeSelf) 

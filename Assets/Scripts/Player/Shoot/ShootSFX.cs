@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Play the sounds corresponding to each weapo
+/// </summary>
 public class ShootSFX : MonoBehaviour
 {
     [SerializeField] private SoundManager soundManager;

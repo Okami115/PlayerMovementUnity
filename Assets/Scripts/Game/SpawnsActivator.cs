@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Activate spawns based on player location
+/// </summary>
 public class SpawnsActivator : MonoBehaviour
 {
     [SerializeField] private string Tag = "Player";

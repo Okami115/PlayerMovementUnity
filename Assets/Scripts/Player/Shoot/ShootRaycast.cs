@@ -1,6 +1,9 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Contains the logic of the bullets by raycast
+/// </summary>
 public class ShootRaycast : MonoBehaviour
 {
     [SerializeField] private string reloadState = "Reloading";
@@ -87,11 +90,18 @@ public class ShootRaycast : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// read the input to execute the firing logic
+    /// </summary>
+    /// <param name="input"></param>
     public void Shoot(bool input)
     {
         isShooting = input;
     }
 
+    /// <summary>
+    /// contains the logic to start the reload
+    /// </summary>
     public void Reload()
     {
         reloading = true;

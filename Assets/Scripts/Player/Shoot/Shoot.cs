@@ -1,7 +1,12 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Contains the logic of physical bullets
+/// </summary>
 [RequireComponent(typeof(Animator))]
 public class Shoot : MonoBehaviour
 {
@@ -33,6 +38,10 @@ public class Shoot : MonoBehaviour
     public int BulletsInMagazine { get => bulletsInMagazine; set => bulletsInMagazine = value; }
     public int MaxBulletsInMagazine { get => maxBulletsInMagazine; set => maxBulletsInMagazine = value; }
 
+    /// <summary>
+    /// Start reload animation
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ReloadAnimation()
     {
         reloading = true;
@@ -43,6 +52,10 @@ public class Shoot : MonoBehaviour
         reloading = false;
         shootingAnimator.SetBool(reloadState, false);
     }
+
+    /// <summary>
+    /// Start the reload logic
+    /// </summary>
     public void Reload()
     {
         if (!reloading && BulletsInMagazine != MaxBulletsInMagazine)
@@ -56,6 +69,11 @@ public class Shoot : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Spawn the bullet and execute the firing logic
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ShootBullet()
     {
         if (Time.time > shootRateTime)
@@ -76,6 +94,11 @@ public class Shoot : MonoBehaviour
 
         yield return null;
     }
+
+    /// <summary>
+    /// Start the triggering coroutine
+    /// </summary>
+    /// <param name="input"></param>
     public void PhisicShoot(bool input)
     {
         if (input && BulletsInMagazine > 0 && !reloading)

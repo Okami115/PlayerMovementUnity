@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Load leves.
+/// </summary>
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] private int sceneIndex = 1;
 
+
+    /// <summary>
+    /// Load scene by index.
+    /// </summary>
+    /// <param name="buildIndex"></param>
     [ContextMenu("Load Level 1")]
     public void LoadLevel1(int buildIndex)
     {

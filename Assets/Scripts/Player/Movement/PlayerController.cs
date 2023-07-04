@@ -3,7 +3,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-
+/// <summary>
+/// Contains the actions based on the inputs
+/// </summary>
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour
 {
@@ -57,6 +59,9 @@ public class PlayerController : MonoBehaviour
         Paused?.Invoke();
     }
 
+    /// <summary>
+    /// reset jump state
+    /// </summary>
     private void ResetJumpState()
     {
         playerMovement.IsJumping = false;

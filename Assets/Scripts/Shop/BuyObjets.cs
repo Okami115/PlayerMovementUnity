@@ -2,7 +2,11 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
+/// <summary>
+/// Allows you to make an item be bought
+/// </summary>
 public class BuyObjets : MonoBehaviour
 {
     [SerializeField] private int price;
@@ -18,6 +22,10 @@ public class BuyObjets : MonoBehaviour
     public event Action<BuyObjets> onCustomerExit;
     public event Action<BuyObjets> onCustomerEnter;
 
+    /// <summary>
+    /// Allows you to buy an item
+    /// </summary>
+    /// <returns></returns>
     protected virtual IEnumerator Canbuy()
     {
         
@@ -30,6 +38,10 @@ public class BuyObjets : MonoBehaviour
         yield return null;
     }
 
+    /// <summary>
+    /// Subtract the credits of the player
+    /// </summary>
+    /// <param name="price"></param>
     protected virtual void Sell(int price)
     {
         gameManager.Credits -= price;
@@ -60,6 +72,10 @@ public class BuyObjets : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Read the input of the interaction button
+    /// </summary>
+    /// <param name="input"></param>
     private void isBuying(bool input)
     {
         this.input = input;

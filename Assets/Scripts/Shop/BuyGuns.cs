@@ -3,12 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// inherited from buyObjets and is applied to weapons
+/// </summary>
 public class BuyGuns : BuyObjets
 {
     [SerializeField] private List<GameObject> Guns;
     [SerializeField] private GameObject GunForSell;
     private bool hasGun;
 
+    /// <summary>
+    /// Weapon purchase logic
+    /// </summary>
+    /// <returns></returns>
     protected override IEnumerator Canbuy()
     {
 

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Control the player's camera
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
@@ -21,6 +24,10 @@ public class CameraController : MonoBehaviour
         controller.Locking += inputCamera;
     }
 
+    /// <summary>
+    /// Set camera movement based on input
+    /// </summary>
+    /// <param name="input"></param>
     private void inputCamera(Vector2 input)
     {
         mouseLooK = input;

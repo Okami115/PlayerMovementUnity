@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Contains the player logic
+/// </summary>
 [RequireComponent(typeof(Health))]
 public class Player : MonoBehaviour
 {
@@ -17,6 +20,10 @@ public class Player : MonoBehaviour
 
     public Health Health { get => health; set => health = value; }
 
+    /// <summary>
+    /// Start player healing
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Healing()
     {
         yield return new WaitForSeconds(timeToHeal);

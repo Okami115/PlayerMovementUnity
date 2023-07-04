@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Set the language of the game.
+/// </summary>
 public class LanguageSelectionController : MonoBehaviour
 {
     private const string Key = "Language";

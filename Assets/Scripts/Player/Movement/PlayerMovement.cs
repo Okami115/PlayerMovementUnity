@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem.HID;
 
+
+/// <summary>
+/// Contains the variables and functions of the player's movement
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -63,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = orientation.rotation;
     }
 
+    /// <summary>
+    /// Update player position based on inputs
+    /// </summary>
     private void MovePlayer()
     {
         direction = orientation.forward * MoveInputVec2.y + orientation.right * MoveInputVec2.x;
@@ -73,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.AddForce(speedMultiplier * moveSpeed * direction.normalized, ForceMode.Force);
     }
 
+    /// <summary>
+    /// Manage jump status
+    /// </summary>
     private void JumpPlayer()
     {
 
@@ -97,11 +108,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Check if the player is on the ground
+    /// </summary>
+    /// <param name="hit"></param>
+    /// <param name="layerMask"></param>
+    /// <returns></returns>
     private bool IsFloored(out RaycastHit hit, int layerMask)
     {
         return Physics.Raycast(pivot.position, Vector3.down, out hit, maxDistanceGround, layerMask);
     }
 
+    /// <summary>
+    /// Limit the maximum speed of the player
+    /// </summary>
     private void LimitMovementSpeed()
     {
         moveSpeed = IsSprinting ? sprintSpeed : walkSpeed;

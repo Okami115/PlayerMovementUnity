@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Play shopping sounds
+/// </summary>
 public class ShopSFX : MonoBehaviour
 {
     [SerializeField] protected SoundManager soundManager;

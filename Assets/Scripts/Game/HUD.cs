@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Control HUD texts
+/// </summary>
 public class HUD : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
@@ -55,12 +58,19 @@ public class HUD : MonoBehaviour
         ShowCurrentBullets();
     }
 
+    /// <summary>
+    /// Pause the game.
+    /// </summary>
     public void Pause()
     {
         Cursor.lockState = CursorLockMode.Confined;
         panel?.SetActive(true);
         Time.timeScale = 0f;
     }
+
+    /// <summary>
+    /// Continuos the game.
+    /// </summary>
     public void Resume()
     {
         Time.timeScale = 1f;
@@ -68,21 +78,33 @@ public class HUD : MonoBehaviour
         panel?.SetActive(false);
     }
 
+    /// <summary>
+    /// Clear the text when the player buy the objet.
+    /// </summary>
     private void BuyObjet()
     {
         messages.text = " ";
     }
 
+    /// <summary>
+    /// Show the text when the player enter the buy zone
+    /// </summary>
     private void EnterToBuyZone(BuyObjets buyObjets)
     {
         messages.text = $"press E to buy ({buyObjets.Price})";
     }
 
+    /// <summary>
+    /// Clear the text when the player leaves the buy zone
+    /// </summary>
     private void ExitToBuyZone(BuyObjets buyObjets)
     {
         messages.text = " ";
     }
 
+    /// <summary>
+    /// Show current bullets depending on the current weapon.
+    /// </summary>
     private void ShowCurrentBullets()
     {
         if(m45A1.gameObject.activeSelf) 

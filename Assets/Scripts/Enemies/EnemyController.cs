@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controls the amount of enemies that exist.
+/// </summary>
 public class EnemyController : MonoBehaviour
 {
 
@@ -40,6 +43,10 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Eliminate the enemies and spawn the new wave
+    /// </summary>
+    /// <param name="health"></param>
     private void DestroyEnemy(Health health)
     {
         listEnemies.Remove(health.gameObject);
@@ -63,6 +70,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawn new enemies
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="rotation"></param>
     private void SpawnEnemy(Vector3 position, Quaternion rotation)
     {
         GameObject newEnemy = Instantiate(enemyPrefab, position, rotation);

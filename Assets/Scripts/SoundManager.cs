@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// <summary>
+/// control in-game sounds
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
@@ -11,11 +14,19 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource MusicSource { get => musicSource; set => musicSource = value; }
 
+    /// <summary>
+    /// Play a specific sound
+
+    /// </summary>
+    /// <param name="clip"></param>
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);
     }
 
+    /// <summary>
+    /// mute or unmute sounds and music
+    /// </summary>
     public void ToggleAudio()
     {
         effectSource.mute = !effectSource.mute;
@@ -23,12 +34,18 @@ public class SoundManager : MonoBehaviour
         PlaySound(button);
     }
 
+    /// <summary>
+    /// Play a specific music
+    /// </summary>
     public void PlayMusic(AudioClip clip)
     {
         MusicSource.clip = clip;
         MusicSource.Play();
     }
 
+    /// <summary>
+    /// stop all music
+    /// </summary>
     public void StopMusic()
     {
         MusicSource.Stop();
