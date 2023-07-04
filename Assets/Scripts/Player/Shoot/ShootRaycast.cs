@@ -1,24 +1,19 @@
-using TMPro;
+using System;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(Animator))]
 public class ShootRaycast : MonoBehaviour
 {
-    [SerializeField]private string enemy = "Enemy";
-    [SerializeField]private string shootnimation = "Shoot";
-    [SerializeField]private string reloadAnimation = "Reload";
-    [SerializeField]private string reloadState = "Reloading";
+    [SerializeField] private string reloadState = "Reloading";
+    [SerializeField] private string reloadAnimation = "Reload";
+    [SerializeField] private string shootAnimation = "Shoot";
+
     [SerializeField] Animator shootingAnimator;
-    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private string enemy = "Enemy";
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform raycastController;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private float Range;
     [SerializeField] bool isAutomatic;
-
-    [SerializeField] AudioClip ShootSound;
-    [SerializeField] AudioClip ReloadSound;
 
     private bool isShooting;
     private bool canShoot = true;
@@ -36,13 +31,14 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] private int bulletsInMagazine;
     [SerializeField] private int maxBulletsInMagazine;
 
+    public event Action relaod;
+    public event Action shoot;
+
     public int BulletsInMagazine { get => bulletsInMagazine; set => bulletsInMagazine = value; }
     public int MaxBulletsInMagazine { get => maxBulletsInMagazine; set => maxBulletsInMagazine = value; }
 
     void Start()
     {
-        shootingAnimator = GetComponent<Animator>();
-
         BulletsInMagazine = MaxBulletsInMagazine;
         playerController.Shoot += Shoot;
         playerController.Reload += Reload;
@@ -67,8 +63,8 @@ public class ShootRaycast : MonoBehaviour
 
         if(canShoot && isShooting && timeToShoot > fireRate && BulletsInMagazine != 0 && !reloading) 
         {
-            shootingAnimator.Play(shootnimation);
-            soundManager.PlaySound(ShootSound);
+            shootingAnimator.Play(shootAnimation);
+            shoot.Invoke(); 
 
             RaycastHit hit;
 
@@ -102,9 +98,8 @@ public class ShootRaycast : MonoBehaviour
         BulletsInMagazine = MaxBulletsInMagazine;
         shootingAnimator.SetBool(reloadState, true);
         shootingAnimator.Play(reloadAnimation);
-        soundManager.PlaySound(ReloadSound);
+        relaod.Invoke();
     }
-
 
     private void OnDrawGizmos()
     {

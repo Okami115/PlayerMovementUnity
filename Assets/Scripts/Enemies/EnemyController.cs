@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private Transform target;
 
-    [SerializeField] private int enemySpawnLimit = 1;
+    [SerializeField] private int enemySpawnLimit;
     [SerializeField] private int enemyCountRoundIncrement = 3;
 
     [SerializeField] private float currentSpeed = 10;
@@ -28,8 +28,16 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        int rand = Random.Range(0, spawnPoints.Length);
-        SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
+        for (int i = 0; i < listEnemies.Capacity; i++)
+        {
+            listEnemies[i].GetComponent<Health>().wasDefeated += DestroyEnemy;
+        }
+
+        for (int  i = 0;  i < enemySpawnLimit;  i++)
+        {
+            int rand = Random.Range(0, spawnPoints.Length);
+            SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
+        }
     }
 
     private void DestroyEnemy(Health health)
@@ -39,7 +47,6 @@ public class EnemyController : MonoBehaviour
 
         if (listEnemies.Count == 0)
         {
-            endRound?.Invoke();
 
             enemySpawnLimit += enemyCountRoundIncrement;
             currentSpeed = currentSpeed * (round * SpeedMultiplier);
@@ -48,11 +55,11 @@ public class EnemyController : MonoBehaviour
 
             for (int i = 0; i < enemySpawnLimit; i++)
             {
-                //Go to new spawner
                 int rand = Random.Range(0, spawnPoints.Length);
                 SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
             }
             
+            endRound?.Invoke();
         }
     }
 

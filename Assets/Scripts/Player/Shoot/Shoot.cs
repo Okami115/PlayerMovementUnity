@@ -1,23 +1,18 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
 public class Shoot : MonoBehaviour
 {
-    [SerializeField] private string reloadingState = "Reloading";
+    [SerializeField] private string reloadState = "Reloading";
     [SerializeField] private string reloadAnimation = "Reload";
     [SerializeField] private string shootAnimation = "Shoot";
-    [SerializeField] private SoundManager soundManager;
+
+    [SerializeField] Animator shootingAnimator;
     [SerializeField] private PlayerController playerController;
-    [SerializeField] private Animator shootingAnimator;
     [SerializeField] private Transform spawnBullet;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private AudioClip ShootSound;
-    [SerializeField] private AudioClip ReloadSound;
 
     [SerializeField] private float shootRate;
     [SerializeField] private float shootForce; 
@@ -32,18 +27,21 @@ public class Shoot : MonoBehaviour
     [SerializeField] private int bulletsInMagazine;
     [SerializeField] private int maxBulletsInMagazine;
 
+    public event Action relaod;
+    public event Action shoot;
+
     public int BulletsInMagazine { get => bulletsInMagazine; set => bulletsInMagazine = value; }
     public int MaxBulletsInMagazine { get => maxBulletsInMagazine; set => maxBulletsInMagazine = value; }
 
     private IEnumerator ReloadAnimation()
     {
         reloading = true;
-        shootingAnimator.SetBool(reloadingState, true);
+        shootingAnimator.SetBool(reloadState, true);
 
         yield return new WaitForSeconds(timeToReload);
 
         reloading = false;
-        shootingAnimator.SetBool(reloadingState, false);
+        shootingAnimator.SetBool(reloadState, false);
     }
     public void Reload()
     {
@@ -51,9 +49,9 @@ public class Shoot : MonoBehaviour
         {
             reloading = true;
             BulletsInMagazine = MaxBulletsInMagazine;
-            shootingAnimator.SetBool(reloadingState, true);
+            shootingAnimator.SetBool(reloadState, true);
             shootingAnimator.Play(reloadAnimation);
-            soundManager.PlaySound(ReloadSound);
+            relaod.Invoke();
 
         }
     }
@@ -64,7 +62,7 @@ public class Shoot : MonoBehaviour
         {
             //TODO: TP2 - SOLID
             shootingAnimator.Play(shootAnimation);
-            soundManager.PlaySound(ShootSound);
+            shoot.Invoke();
 
             GameObject newBullet = Instantiate(bullet, spawnBullet.position, spawnBullet.rotation);
             newBullet.GetComponent<Rigidbody>().AddForce(spawnBullet.forward * shootForce);

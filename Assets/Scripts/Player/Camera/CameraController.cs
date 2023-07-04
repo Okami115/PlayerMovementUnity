@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private PlayerController controller;
 
-    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private float mouseSensitivity = 0.1f;
     private Vector2 mouseLooK;
 
     private float xRotation = 0;
@@ -21,10 +21,11 @@ public class CameraController : MonoBehaviour
         controller.Locking += inputCamera;
     }
 
-    private void Update()
+    private void inputCamera(Vector2 input)
     {
-        float mouseX = mouseLooK.x * mouseSensitivity * Time.deltaTime;
-        float mouseY = mouseLooK.y * mouseSensitivity * Time.deltaTime;
+        mouseLooK = input;
+        float mouseX = mouseLooK.x * mouseSensitivity;
+        float mouseY = mouseLooK.y * mouseSensitivity;
 
         yRotation += mouseX;
 
@@ -33,11 +34,6 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-    }
-
-    private void inputCamera(Vector2 input)
-    {
-        mouseLooK = input;
     }
     
 }
