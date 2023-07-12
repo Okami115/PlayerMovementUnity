@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 /// <summary>
 /// Control the player's camera
@@ -9,7 +10,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private PlayerController controller;
 
     [SerializeField] private float mouseSensitivity = 0.1f;
+    [SerializeField] private float joystickSensitivity = 1;
     private Vector2 mouseLooK;
+    private Vector2 joystickLooK;
 
     private float xRotation = 0;
     private float yRotation = 0;
@@ -19,9 +22,22 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         controller = FindAnyObjectByType<PlayerController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        controller.Locking += inputCamera;
+        controller.Looking += inputCamera;
+        controller.JoystickLook += inputJoystick;
+    }
+
+    private void Update()
+    {
+        float joyX = joystickLooK.x * joystickSensitivity;
+        float joyY = joystickLooK.y * joystickSensitivity;
+
+        yRotation += joyX;
+
+        xRotation -= joyY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     /// <summary>
@@ -42,5 +58,13 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
-    
+
+    /// <summary>
+    /// Set camera movement based on input with joystick
+    /// </summary>
+    /// <param name="input"></param>
+    private void inputJoystick(Vector2 input)
+    {
+        joystickLooK = input;
+    }
 }

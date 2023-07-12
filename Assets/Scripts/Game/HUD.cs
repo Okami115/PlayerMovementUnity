@@ -46,6 +46,9 @@ public class HUD : MonoBehaviour
             buyGuns[i].onCustomerEnter += EnterToBuyZone;
         }
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         panel.SetActive(false);
         controller.Paused += Pause;
     }
@@ -64,6 +67,7 @@ public class HUD : MonoBehaviour
     public void Pause()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         panel?.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -75,6 +79,7 @@ public class HUD : MonoBehaviour
     {
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         panel?.SetActive(false);
     }
 
@@ -122,5 +127,12 @@ public class HUD : MonoBehaviour
             maxBullets.text = m48.MaxBulletsInMagazine.ToString();
             currentBullets.text = m48.BulletsInMagazine.ToString();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        Time.timeScale = 1f;
     }
 }

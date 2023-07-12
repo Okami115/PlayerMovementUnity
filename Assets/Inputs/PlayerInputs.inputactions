@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "JoystickLook",
+                    "type": "Value",
+                    "id": "438cf258-14b4-438c-b2bd-2a730872100b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -202,17 +211,6 @@
                 },
                 {
                     "name": "",
-                    "id": "0cb938f6-405f-4f79-9760-c046414961c3",
-                    "path": "<DualShockGamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Camera",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a59f45f4-0b88-43d8-ab1b-571c889593c0",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -296,6 +294,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cb938f6-405f-4f79-9760-c046414961c3",
+                    "path": "<DualShockGamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoystickLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

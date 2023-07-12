@@ -39,6 +39,14 @@ public class EnemyMovementTutorial : MonoBehaviour
 
     private bool IsOnTarget()
     {
-        return (agent.remainingDistance <= minDistance);
+        if (agent == null)
+            return false;
+        else
+            return (agent.remainingDistance <= minDistance);
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(Move());
     }
 }

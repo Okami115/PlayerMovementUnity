@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public event Action<bool> Shoot;
     public event Action Reload;
     public event Action Moving;
-    public event Action<Vector2> Locking;
+    public event Action<Vector2> Looking;
+    public event Action<Vector2> JoystickLook;
     public event Action Paused;
 
     private void Start()
@@ -44,7 +45,12 @@ public class PlayerController : MonoBehaviour
     }
     public void OnCamera(InputValue input)
     {
-        Locking?.Invoke(input.Get<Vector2>());
+        Looking?.Invoke(input.Get<Vector2>());
+    }
+
+    public void OnJoystickLook(InputValue input)
+    {
+        JoystickLook?.Invoke(input.Get<Vector2>());
     }
     public void OnReload()
     {

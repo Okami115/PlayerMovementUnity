@@ -100,6 +100,15 @@ namespace Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JoystickLook"",
+                    ""type"": ""Value"",
+                    ""id"": ""438cf258-14b4-438c-b2bd-2a730872100b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -226,17 +235,6 @@ namespace Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0cb938f6-405f-4f79-9760-c046414961c3"",
-                    ""path"": ""<DualShockGamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a59f45f4-0b88-43d8-ab1b-571c889593c0"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -320,6 +318,17 @@ namespace Inputs
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cb938f6-405f-4f79-9760-c046414961c3"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JoystickLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -527,6 +536,7 @@ namespace Inputs
             m_World_Reload = m_World.FindAction("Reload", throwIfNotFound: true);
             m_World_Interactive = m_World.FindAction("Interactive", throwIfNotFound: true);
             m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
+            m_World_JoystickLook = m_World.FindAction("JoystickLook", throwIfNotFound: true);
             // Menu
             m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
             m_Menu_Selecction = m_Menu.FindAction("Selecction", throwIfNotFound: true);
@@ -601,6 +611,7 @@ namespace Inputs
         private readonly InputAction m_World_Reload;
         private readonly InputAction m_World_Interactive;
         private readonly InputAction m_World_Pause;
+        private readonly InputAction m_World_JoystickLook;
         public struct WorldActions
         {
             private @PlayerInputs m_Wrapper;
@@ -613,6 +624,7 @@ namespace Inputs
             public InputAction @Reload => m_Wrapper.m_World_Reload;
             public InputAction @Interactive => m_Wrapper.m_World_Interactive;
             public InputAction @Pause => m_Wrapper.m_World_Pause;
+            public InputAction @JoystickLook => m_Wrapper.m_World_JoystickLook;
             public InputActionMap Get() { return m_Wrapper.m_World; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -646,6 +658,9 @@ namespace Inputs
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @JoystickLook.started += instance.OnJoystickLook;
+                @JoystickLook.performed += instance.OnJoystickLook;
+                @JoystickLook.canceled += instance.OnJoystickLook;
             }
 
             private void UnregisterCallbacks(IWorldActions instance)
@@ -674,6 +689,9 @@ namespace Inputs
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
+                @JoystickLook.started -= instance.OnJoystickLook;
+                @JoystickLook.performed -= instance.OnJoystickLook;
+                @JoystickLook.canceled -= instance.OnJoystickLook;
             }
 
             public void RemoveCallbacks(IWorldActions instance)
@@ -763,6 +781,7 @@ namespace Inputs
             void OnReload(InputAction.CallbackContext context);
             void OnInteractive(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
+            void OnJoystickLook(InputAction.CallbackContext context);
         }
         public interface IMenuActions
         {

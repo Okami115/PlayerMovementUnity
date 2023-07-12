@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
 
         if (HPoints <= 0)
         {
+            
             wasDefeated?.Invoke(this);
         }
     }
