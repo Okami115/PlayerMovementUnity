@@ -35,7 +35,5 @@ public class EnemyMovement : MonoBehaviour
         {
             agent.isStopped = true;
         }
-
-        Debug.Log(agent.remainingDistance);
     }
 }

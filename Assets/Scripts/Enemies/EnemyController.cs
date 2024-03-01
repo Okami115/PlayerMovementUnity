@@ -14,12 +14,15 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private Transform[] spawnPoints;
 
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemiesPrefab;
+    [SerializeField] private GameObject bossPrefab;
 
     [SerializeField] private Transform target;
 
     [SerializeField] private int enemySpawnLimit;
     [SerializeField] private int enemyCountRoundIncrement = 3;
+
+    [SerializeField] private int roundInterval = 3;
 
     [SerializeField] private float currentSpeed = 10;
     [SerializeField] private float maxSpeed = 50;
@@ -77,7 +80,9 @@ public class EnemyController : MonoBehaviour
     /// <param name="rotation"></param>
     private void SpawnEnemy(Vector3 position, Quaternion rotation)
     {
-        GameObject newEnemy = Instantiate(enemyPrefab, position, rotation);
+        int rand = Random.Range(0, enemiesPrefab.Length);
+
+        GameObject newEnemy = Instantiate(enemiesPrefab[rand], position, rotation);
         listEnemies.Add(newEnemy);
         if (newEnemy.TryGetComponent(out Health health))
         {
