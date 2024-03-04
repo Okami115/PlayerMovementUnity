@@ -26,14 +26,5 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         agent.destination = Target.position;
-
-        if(agent.remainingDistance > safeZone) 
-        {
-            agent.isStopped = false;
-        }
-        else
-        {
-            agent.isStopped = true;
-        }
     }
 }

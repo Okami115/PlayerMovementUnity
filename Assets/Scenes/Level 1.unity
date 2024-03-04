@@ -65021,6 +65021,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04017ddf07380b845bcee687b510ae61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1647163313
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119680805}
+  m_Material: {fileID: 13400000, guid: a9c54a48ee4a8a4429ced898282fc2ad, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1647426982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87863,6 +87877,14 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1647163310}
+    - target: {fileID: 2549975411988545629, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2549975411988545629, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2549975411988545631, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -87955,7 +87977,8 @@ PrefabInstance:
       propertyPath: maxDistanceGround
       value: 0.7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2549975411446338851, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d9ec381f120a87438e741f82c9571eb, type: 3}
 --- !u!1001 &4024701463994951818
 PrefabInstance:
@@ -88030,7 +88053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
       propertyPath: enemiesPrefab.Array.size
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
       propertyPath: listEnemies.Array.data[0]
@@ -88047,7 +88070,39 @@ PrefabInstance:
     - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
       propertyPath: enemiesPrefab.Array.data[1]
       value: 
+      objectReference: {fileID: 8170740095061454950, guid: 0ef06b4bd40182e43ba890e078abf709, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: 0ef06b4bd40182e43ba890e078abf709, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: 0ef06b4bd40182e43ba890e078abf709, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[4]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: 0ef06b4bd40182e43ba890e078abf709, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[5]
+      value: 
       objectReference: {fileID: 8170740095061454950, guid: cbf3e4b489a5a974a91849592b2c7c95, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[6]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: cbf3e4b489a5a974a91849592b2c7c95, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[7]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: cbf3e4b489a5a974a91849592b2c7c95, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[8]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: 137469d90cd2a3c49801a93206b69109, type: 3}
+    - target: {fileID: 4024701462540031898, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
+      propertyPath: enemiesPrefab.Array.data[9]
+      value: 
+      objectReference: {fileID: 8170740095061454950, guid: 137469d90cd2a3c49801a93206b69109, type: 3}
     - target: {fileID: 4024701462846885168, guid: c0e4f704d24ff95449c0040ae3d66ca0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 65.36
@@ -88708,6 +88763,10 @@ PrefabInstance:
       propertyPath: maxBullets
       value: 
       objectReference: {fileID: 1114224424}
+    - target: {fileID: 4183419262719277525, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}
+      propertyPath: shootForce
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4183419262719277525, guid: 8fdff7ce152cf2a479d60c88422d4e78, type: 3}
       propertyPath: ReloadSound
       value: 
