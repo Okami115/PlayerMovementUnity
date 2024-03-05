@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
     public event Action<Vector2> JoystickLook;
     public event Action Paused;
 
+    public event Action NextLevel;
+    public event Action GodMode;
+    public event Action Flash;
+    public event Action Nuke;
+
     private void Start()
     {
         playerMovement =GetComponent<PlayerMovement>();
@@ -46,6 +51,23 @@ public class PlayerController : MonoBehaviour
     public void OnCamera(InputValue input)
     {
         Looking?.Invoke(input.Get<Vector2>());
+    }
+
+    public void OnNextLevel()
+    {
+        NextLevel?.Invoke();
+    }
+    public void OnGodMode()
+    {
+        GodMode?.Invoke();
+    }
+    public void OnFlash()
+    {
+        Flash?.Invoke();
+    }
+    public void OnNuke()
+    {
+        Nuke?.Invoke();
     }
 
     public void OnJoystickLook(InputValue input)

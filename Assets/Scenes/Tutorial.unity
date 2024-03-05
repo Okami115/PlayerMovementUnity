@@ -1419,10 +1419,12 @@ MonoBehaviour:
   - {fileID: 1184303730}
   spawnPoints:
   - {fileID: 233104403}
-  enemyPrefab: {fileID: 8170740095061454950, guid: 0ef06b4bd40182e43ba890e078abf709, type: 3}
+  enemiesPrefab: []
+  bossPrefab: {fileID: 0}
   target: {fileID: 451775077}
   enemySpawnLimit: 0
   enemyCountRoundIncrement: 3
+  roundInterval: 3
   currentSpeed: 10
   maxSpeed: 50
   SpeedMultiplier: 0.5
@@ -2986,6 +2988,21 @@ MonoBehaviour:
   buyObjets: []
   buyGuns: []
   buySound: {fileID: 8300000, guid: 2edb85dd6c1eddc4288c881272e49434, type: 3}
+--- !u!114 &1209720400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885723330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2a5fd624f2ba640a57cfddb73b7ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 515375649}
+  LevelLoader: {fileID: 1416078475}
+  player: {fileID: 0}
 --- !u!1001 &1250605473
 PrefabInstance:
   m_ObjectHideFlags: 0

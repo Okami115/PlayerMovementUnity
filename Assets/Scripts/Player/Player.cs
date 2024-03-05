@@ -16,9 +16,12 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healtPoints;
     [SerializeField] private AudioClip hit;
     [SerializeField] private Health health;
-    [SerializeField]private float timeToHeal;
+    [SerializeField] private float timeToHeal;
+
+    private bool godMode;
 
     public Health Health { get => health; set => health = value; }
+    public bool GodMode { get => godMode; set => godMode = value; }
 
     /// <summary>
     /// Start player healing
@@ -34,11 +37,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Health = GetComponent<Health>();
+        godMode = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == Enemy)
+        if(collision.gameObject.tag == Enemy && !godMode)
         {
             soundManager.PlaySound(hit);
             Health.TakeDamage(1);

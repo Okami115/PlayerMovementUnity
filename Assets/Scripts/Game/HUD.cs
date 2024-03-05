@@ -6,23 +6,55 @@ using UnityEngine;
 /// </summary>
 public class HUD : MonoBehaviour
 {
+    [Header ("Player")]
     [SerializeField] private PlayerController controller;
     [SerializeField] private Player player;
+    [SerializeField] private Health playerHealth;
+    [Header ("Guns")]
     [SerializeField] private ShootRaycast m45A1;
     [SerializeField] private ShootRaycast ppsh;
     [SerializeField] private Shoot m48;
+    [Header ("Game")]
     [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject panel;
-
-    [SerializeField] private TextMeshProUGUI messages;
+    [SerializeField] private GameObject gameOver;
+    [Header ("Buy Objects")]
     [SerializeField] private BuyObjets[] buyObjets;
     [SerializeField] private BuyGuns[] buyGuns;
-
+    [Header ("Interface")]
+    [SerializeField] private TextMeshProUGUI messages;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI healtPoints;
     [SerializeField] private TextMeshProUGUI maxBullets;
     [SerializeField] private TextMeshProUGUI currentBullets;
 
+    private void OnEnable()
+    {
+        playerHealth.wasDefeated += GameOver;
+
+        controller.Paused += Pause;
+    }
+
+    private void OnDisable()
+    {
+        playerHealth.wasDefeated -= GameOver;
+
+        controller.Paused -= Pause;
+
+        for (int i = 0; i < buyObjets.Length; i++)
+        {
+            buyObjets[i].sell -= BuyObjet;
+            buyObjets[i].onCustomerExit -= ExitToBuyZone;
+            buyObjets[i].onCustomerEnter -= EnterToBuyZone;
+        }
+
+        for (int i = 0; i < buyGuns.Length; i++)
+        {
+            buyGuns[i].sell -= BuyObjet;
+            buyGuns[i].onCustomerExit -= ExitToBuyZone;
+            buyGuns[i].onCustomerEnter -= EnterToBuyZone;
+        }
+    }
 
     void Start()
     {
@@ -50,7 +82,6 @@ public class HUD : MonoBehaviour
         Cursor.visible = false;
 
         panel.SetActive(false);
-        controller.Paused += Pause;
     }
 
     private void Update()
@@ -81,6 +112,14 @@ public class HUD : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         panel?.SetActive(false);
+    }
+
+    public void GameOver(Health hp)
+    {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        gameOver.SetActive(true);
     }
 
     /// <summary>

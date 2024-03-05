@@ -16,11 +16,11 @@ public class LanguageSelectionController : MonoBehaviour
         levelLoader = new LevelLoader();
         if (!PlayerPrefs.HasKey(Key))
         {
-            levelLoader.LoadLevel1(indexLanguageScene);
+            levelLoader.LoadLevel(indexLanguageScene);
         }
         else
         {
-            levelLoader.LoadLevel1(indexScene);
+            levelLoader.LoadLevel(indexScene);
         }
     }
 

@@ -28,16 +28,19 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        float joyX = joystickLooK.x * joystickSensitivity;
-        float joyY = joystickLooK.y * joystickSensitivity;
+        if(Time.timeScale != 0)
+        {
+            float joyX = joystickLooK.x * joystickSensitivity;
+            float joyY = joystickLooK.y * joystickSensitivity;
 
-        yRotation += joyX;
+            yRotation += joyX;
 
-        xRotation -= joyY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation -= joyY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 
     /// <summary>
@@ -46,17 +49,20 @@ public class CameraController : MonoBehaviour
     /// <param name="input"></param>
     private void inputCamera(Vector2 input)
     {
-        mouseLooK = input;
-        float mouseX = mouseLooK.x * mouseSensitivity;
-        float mouseY = mouseLooK.y * mouseSensitivity;
+        if(Time.timeScale != 0)
+        {
+            mouseLooK = input;
+            float mouseX = mouseLooK.x * mouseSensitivity;
+            float mouseY = mouseLooK.y * mouseSensitivity;
 
-        yRotation += mouseX;
+            yRotation += mouseX;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 
     /// <summary>

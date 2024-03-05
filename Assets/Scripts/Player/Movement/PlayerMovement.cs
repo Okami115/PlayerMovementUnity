@@ -21,9 +21,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float walkSpeed = 10f;
     [SerializeField] private float sprintSpeed = 30f;
-    [SerializeField] private float speedMultiplier = 10f;
+    [SerializeField] public float SpeedConstantMultiplier = 10f;
+    [SerializeField] private float speedMultiplier;
     private bool isSprinting = false;
     public bool IsSprinting { get => isSprinting; set => isSprinting = value; }
+    public float SpeedMultiplier { get => speedMultiplier; set => speedMultiplier = value; }
     
     private RaycastHit hit;
     private Vector2 moveInputVec2;
@@ -41,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     public bool IsJumping { get => isJumping; set => isJumping = value; }
 
-
     [Header("Ground variables")]
     [SerializeField] private LayerMask ground;
     [SerializeField] private LayerMask stairs;
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.freezeRotation = true;
+        speedMultiplier = SpeedConstantMultiplier;
     }
 
     private void FixedUpdate()
@@ -78,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         {
             direction -= Vector3.Project(direction.normalized, hit.normal);
         }
-        rigidBody.AddForce(speedMultiplier * moveSpeed * direction.normalized, ForceMode.Force);
+        rigidBody.AddForce(SpeedMultiplier * moveSpeed * direction.normalized, ForceMode.Force);
     }
 
     /// <summary>

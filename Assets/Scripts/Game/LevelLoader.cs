@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
     /// </summary>
     /// <param name="buildIndex"></param>
     [ContextMenu("Load Level 1")]
-    public void LoadLevel1(int buildIndex)
+    public void LoadLevel(int buildIndex)
     {
         if (buildIndex != -1)
         {

@@ -57,7 +57,6 @@ public class EnemyController : MonoBehaviour
 
         if (listEnemies.Count == 0)
         {
-
             enemySpawnLimit += enemyCountRoundIncrement;
             currentSpeed = currentSpeed * (round * SpeedMultiplier);
 
@@ -91,6 +90,14 @@ public class EnemyController : MonoBehaviour
         if (newEnemy.TryGetComponent(out EnemyMovement enemyMovement))
         {
             enemyMovement.Target = target;
+        }
+    }
+
+    public void Nuke()
+    {
+        for (int i = listEnemies.Count - 1; i >= 0; i--)
+        {
+            DestroyEnemy(listEnemies[i].GetComponent<Health>());
         }
     }
 }

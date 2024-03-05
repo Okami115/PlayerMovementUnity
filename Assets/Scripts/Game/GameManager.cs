@@ -14,26 +14,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EnemyController enemyController;
 
-    [SerializeField] private Player player;
-    [SerializeField] private Health playerHealth;
     [SerializeField] private int credits;
 
     public int Credits { get => credits; set => credits = value; }
 
     private void Start()
     {
-        playerHealth = player.Health;
-        playerHealth.wasDefeated += playerDefeat;
         enemyController.endRound += HandleAllEnemiesAreDefeated;
-    }
-
-    /// <summary>
-    /// Returns to menu when the playes dies
-    /// </summary>
-    /// <param name="playerHealth"></param>
-    private void playerDefeat(Health playerHealth)
-    {
-        SceneManager.LoadScene(sceneNameMenu, LoadSceneMode.Single);
     }
 
     /// <summary>
