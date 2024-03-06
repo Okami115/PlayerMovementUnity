@@ -125,6 +125,12 @@ public class ShootRaycast : MonoBehaviour
         relaod.Invoke();
     }
 
+    /// <summary>
+    /// Draw the trail of the bullet when it is fired
+    /// </summary>
+    /// <param name="trail"></param>
+    /// <param name="hit"></param>
+    /// <returns></returns>
     private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
     {
         float time = 0;

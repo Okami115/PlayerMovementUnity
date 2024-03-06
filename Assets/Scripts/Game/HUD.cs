@@ -121,6 +121,10 @@ public class HUD : MonoBehaviour
         panel?.SetActive(false);
     }
 
+    /// <summary>
+    /// Turn on the death screen
+    /// </summary>
+    /// <param name="hp"></param>
     public void GameOver(Health hp)
     {
         Time.timeScale = 0f;
@@ -175,9 +179,14 @@ public class HUD : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the current round number
+    /// </summary>
+    /// <param name="currentRound"></param>
     private void ShowCurrentRound(int currentRound)
     {
-        roundCounter.text = "Round : " + currentRound.ToString();
+        if(roundCounter != null)
+            roundCounter.text = "Round : " + currentRound.ToString();
     }
 
     private void OnDestroy()

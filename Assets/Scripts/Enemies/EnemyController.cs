@@ -96,6 +96,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Eliminate all enemies in the round
+    /// </summary>
     public void Nuke()
     {
         for (int i = listEnemies.Count - 1; i >= 0; i--)

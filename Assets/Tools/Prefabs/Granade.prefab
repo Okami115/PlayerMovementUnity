@@ -4878,7 +4878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   damage: 2
-  range: 5
+  range: 20
   granadeMesh: {fileID: 1036792971539945808}
   PSystem: {fileID: 1546621115980597447}
 --- !u!135 &2650558403517145707

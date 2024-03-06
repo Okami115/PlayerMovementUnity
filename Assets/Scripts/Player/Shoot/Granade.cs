@@ -26,6 +26,10 @@ public class Granade : MonoBehaviour
         StartCoroutine(explocion());
     }
 
+    /// <summary>
+    /// deals damage to all objects with the "Health" component within a certain range
+    /// </summary>
+    /// <returns></returns>
     IEnumerator explocion()
     {
         granadeMesh.enabled = false;

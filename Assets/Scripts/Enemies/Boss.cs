@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Contains the boss's logic
+/// </summary>
 public class Boss : MonoBehaviour
 {
     [SerializeField] private Animator animator;
@@ -24,6 +27,10 @@ public class Boss : MonoBehaviour
             StartCoroutine(Shoot());
     }
 
+    /// <summary>
+    /// place the corresponding animations and send the projectile towards the player
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Shoot()
     {
         isShooting = true;
@@ -40,7 +47,13 @@ public class Boss : MonoBehaviour
         isShooting = false;
     }
 
-    Vector3 CalculateTrajectory(Vector3 posicionInicial, Vector3 posicionFinal)
+    /// <summary>
+    /// Calculate the trajectory that the projectile should have to reach the player
+    /// </summary>
+    /// <param name="initialPosition"></param>
+    /// <param name="FinalPosition"></param>
+    /// <returns></returns>
+    Vector3 CalculateTrajectory(Vector3 initialPosition, Vector3 FinalPosition)
     {
         Vector2 DisXY = new Vector2(target.x - gameObject.transform.position.x, target.y - gameObject.transform.position.y);
         float DisX = Mathf.Sqrt(DisXY.x * DisXY.x + DisXY.y * DisXY.y);

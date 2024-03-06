@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3293f1293d66f7843adc125d714ed941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hPoints: 10
+  hPoints: 100
   maxHealth: 0
 --- !u!1001 &4873668442979262620
 PrefabInstance:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Play the sounds corresponding to each weapo
+/// Play the sounds corresponding to each weapon
 /// </summary>
 public class ShootSFX : MonoBehaviour
 {
