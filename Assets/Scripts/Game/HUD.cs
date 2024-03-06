@@ -10,6 +10,8 @@ public class HUD : MonoBehaviour
     [SerializeField] private PlayerController controller;
     [SerializeField] private Player player;
     [SerializeField] private Health playerHealth;
+    [Header("Enemies")]
+    [SerializeField] private EnemyController enemyController;
     [Header ("Guns")]
     [SerializeField] private ShootRaycast m45A1;
     [SerializeField] private ShootRaycast ppsh;
@@ -21,7 +23,8 @@ public class HUD : MonoBehaviour
     [Header ("Buy Objects")]
     [SerializeField] private BuyObjets[] buyObjets;
     [SerializeField] private BuyGuns[] buyGuns;
-    [Header ("Interface")]
+    [Header("Interface")]
+    [SerializeField] private TextMeshProUGUI roundCounter;
     [SerializeField] private TextMeshProUGUI messages;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI healtPoints;
@@ -29,34 +32,6 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentBullets;
 
     private void OnEnable()
-    {
-        playerHealth.wasDefeated += GameOver;
-
-        controller.Paused += Pause;
-    }
-
-    private void OnDisable()
-    {
-        playerHealth.wasDefeated -= GameOver;
-
-        controller.Paused -= Pause;
-
-        for (int i = 0; i < buyObjets.Length; i++)
-        {
-            buyObjets[i].sell -= BuyObjet;
-            buyObjets[i].onCustomerExit -= ExitToBuyZone;
-            buyObjets[i].onCustomerEnter -= EnterToBuyZone;
-        }
-
-        for (int i = 0; i < buyGuns.Length; i++)
-        {
-            buyGuns[i].sell -= BuyObjet;
-            buyGuns[i].onCustomerExit -= ExitToBuyZone;
-            buyGuns[i].onCustomerEnter -= EnterToBuyZone;
-        }
-    }
-
-    void Start()
     {
         player = FindAnyObjectByType<Player>();
         controller = FindAnyObjectByType<PlayerController>();
@@ -78,6 +53,38 @@ public class HUD : MonoBehaviour
             buyGuns[i].onCustomerEnter += EnterToBuyZone;
         }
 
+        playerHealth.wasDefeated += GameOver;
+
+        controller.Paused += Pause;
+
+        enemyController.endRound += ShowCurrentRound;
+    }
+
+    private void OnDisable()
+    {
+        playerHealth.wasDefeated -= GameOver;
+
+        controller.Paused -= Pause;
+
+        enemyController.endRound -= ShowCurrentRound;
+
+        for (int i = 0; i < buyObjets.Length; i++)
+        {
+            buyObjets[i].sell -= BuyObjet;
+            buyObjets[i].onCustomerExit -= ExitToBuyZone;
+            buyObjets[i].onCustomerEnter -= EnterToBuyZone;
+        }
+
+        for (int i = 0; i < buyGuns.Length; i++)
+        {
+            buyGuns[i].sell -= BuyObjet;
+            buyGuns[i].onCustomerExit -= ExitToBuyZone;
+            buyGuns[i].onCustomerEnter -= EnterToBuyZone;
+        }
+    }
+
+    void Start()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -166,6 +173,11 @@ public class HUD : MonoBehaviour
             maxBullets.text = m48.MaxBulletsInMagazine.ToString();
             currentBullets.text = m48.BulletsInMagazine.ToString();
         }
+    }
+
+    private void ShowCurrentRound(int currentRound)
+    {
+        roundCounter.text = "Round : " + currentRound.ToString();
     }
 
     private void OnDestroy()

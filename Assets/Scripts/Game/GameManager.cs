@@ -18,15 +18,20 @@ public class GameManager : MonoBehaviour
 
     public int Credits { get => credits; set => credits = value; }
 
-    private void Start()
+    private void OnEnable()
     {
         enemyController.endRound += HandleAllEnemiesAreDefeated;
+    }
+
+    private void OnDisable()
+    {
+        enemyController.endRound -= HandleAllEnemiesAreDefeated;
     }
 
     /// <summary>
     /// When the tutorial enemies are defeated, start level 1
     /// </summary>
-    private void HandleAllEnemiesAreDefeated()
+    private void HandleAllEnemiesAreDefeated(int currentRound)
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName(sceneNameTutorial))
         {

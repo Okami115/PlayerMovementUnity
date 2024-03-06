@@ -12,13 +12,13 @@ public class ShopSFX : MonoBehaviour
     [SerializeField] private BuyGuns[] buyGuns;
     [SerializeField] protected AudioClip buySound;
 
-    private void Start()
+    private void OnEnable()
     {
         soundManager = FindAnyObjectByType<SoundManager>();
         buyObjets = FindObjectsOfType<BuyObjets>();
         buyGuns = FindObjectsOfType<BuyGuns>();
 
-        for (int i = 0; i < buyObjets.Length; i++) 
+        for (int i = 0; i < buyObjets.Length; i++)
         {
             buyObjets[i].sell += playSFXSell;
         }
@@ -26,6 +26,18 @@ public class ShopSFX : MonoBehaviour
         for (int i = 0; i < buyGuns.Length; i++)
         {
             buyGuns[i].sell += playSFXSell;
+        }
+    }
+    private void OnDisable()
+    {
+        for (int i = 0; i < buyObjets.Length; i++)
+        {
+            buyObjets[i].sell -= playSFXSell;
+        }
+
+        for (int i = 0; i < buyGuns.Length; i++)
+        {
+            buyGuns[i].sell -= playSFXSell;
         }
     }
 

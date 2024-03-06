@@ -19,11 +19,17 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Transform orientation;
 
-    private void Start()
+    private void OnEnable()
     {
         controller = FindAnyObjectByType<PlayerController>();
         controller.Looking += inputCamera;
         controller.JoystickLook += inputJoystick;
+    }
+
+    private void OnDisable()
+    {
+        controller.Looking -= inputCamera;
+        controller.JoystickLook -= inputJoystick;
     }
 
     private void Update()

@@ -21,7 +21,8 @@ public class ShootSFX : MonoBehaviour
     [SerializeField] private AudioClip ppshShoot;
     [SerializeField] private AudioClip ppshReload;
 
-    private void Start()
+
+    private void OnEnable()
     {
         soundManager = FindAnyObjectByType<SoundManager>();
 
@@ -33,6 +34,18 @@ public class ShootSFX : MonoBehaviour
 
         ppsh.relaod += ppshReloadSound;
         ppsh.shoot += ppshShootSound;
+    }
+
+    private void OnDisable()
+    {
+        m48.relaod -= m48ReloadSound;
+        m48.shoot -= m48ShootSound;
+
+        m45a1.relaod -= m45a1ReloadSound;
+        m45a1.shoot -= m45a1ShootSound;
+
+        ppsh.relaod -= ppshReloadSound;
+        ppsh.shoot -= ppshShootSound;
     }
 
     private void m48ReloadSound()

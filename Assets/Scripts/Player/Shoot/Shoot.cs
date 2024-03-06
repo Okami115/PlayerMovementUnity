@@ -117,8 +117,18 @@ public class Shoot : MonoBehaviour
         shootingAnimator = GetComponent<Animator>();
 
         BulletsInMagazine = MaxBulletsInMagazine;
+    }
+
+    private void OnEnable()
+    {
         playerController.Shoot += PhisicShoot;
         playerController.Reload += Reload;
+    }
+
+    private void OnDisable()
+    {
+        playerController.Shoot -= PhisicShoot;
+        playerController.Reload -= Reload;
     }
 
     void Update()

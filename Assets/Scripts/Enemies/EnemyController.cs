@@ -28,12 +28,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float maxSpeed = 50;
     [SerializeField] private float SpeedMultiplier = 0.5f;
 
-    public event System.Action endRound;
+    public event System.Action<int> endRound;
 
-    private int round = 1;
+    private int round;
 
     private void Start()
     {
+        round = 1;
+
         for (int i = 0; i < listEnemies.Capacity; i++)
         {
             listEnemies[i].GetComponent<Health>().wasDefeated += DestroyEnemy;
@@ -57,8 +59,11 @@ public class EnemyController : MonoBehaviour
 
         if (listEnemies.Count == 0)
         {
-            enemySpawnLimit += enemyCountRoundIncrement;
+            round++;
+            endRound?.Invoke(round);
+
             currentSpeed = currentSpeed * (round * SpeedMultiplier);
+            enemySpawnLimit += enemyCountRoundIncrement;
 
             Mathf.Clamp(currentSpeed, 0, maxSpeed);
 
@@ -67,8 +72,6 @@ public class EnemyController : MonoBehaviour
                 int rand = Random.Range(0, spawnPoints.Length);
                 SpawnEnemy(spawnPoints[rand].transform.position, spawnPoints[rand].transform.rotation);
             }
-            
-            endRound?.Invoke();
         }
     }
 

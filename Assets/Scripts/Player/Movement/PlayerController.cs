@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        playerMovement =GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void OnMove(InputValue input)

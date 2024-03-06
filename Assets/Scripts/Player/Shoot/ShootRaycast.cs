@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -17,6 +18,8 @@ public class ShootRaycast : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private float Range;
     [SerializeField] bool isAutomatic;
+
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private bool isShooting;
     private bool canShoot = true;
@@ -40,11 +43,17 @@ public class ShootRaycast : MonoBehaviour
     public int BulletsInMagazine { get => bulletsInMagazine; set => bulletsInMagazine = value; }
     public int MaxBulletsInMagazine { get => maxBulletsInMagazine; set => maxBulletsInMagazine = value; }
 
-    void Start()
+    private void OnEnable()
     {
         BulletsInMagazine = MaxBulletsInMagazine;
         playerController.Shoot += Shoot;
         playerController.Reload += Reload;
+    }
+
+    private void OnDisable()
+    {
+        playerController.Shoot -= Shoot;
+        playerController.Reload -= Reload;
     }
 
     void Update()
@@ -59,7 +68,6 @@ public class ShootRaycast : MonoBehaviour
         {
             currentTimeToReload = timeToReload;
             reloading = false;
-            //TODO: TP2 - SOLID
             shootingAnimator.SetBool(reloadState, false);
         }
 
@@ -71,8 +79,13 @@ public class ShootRaycast : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(raycastController.position, raycastController.forward,out hit, Range))
+            if (Physics.Raycast(raycastController.position, raycastController.forward, out hit, Range))
             {
+                trailRenderer.gameObject.SetActive(true);
+                TrailRenderer trail = Instantiate(trailRenderer, raycastController.position, Quaternion.identity);
+
+                StartCoroutine(SpawnTrail(trail, hit));
+
                 if(hit.transform.CompareTag(enemy))
                 {
                     hit.transform.GetComponent<Health>().TakeDamage(damage);
@@ -82,6 +95,7 @@ public class ShootRaycast : MonoBehaviour
 
             BulletsInMagazine--;
             timeToShoot = 0;
+            trailRenderer.gameObject.SetActive(false);
         }
 
         if(!isAutomatic && isShooting)
@@ -109,6 +123,25 @@ public class ShootRaycast : MonoBehaviour
         shootingAnimator.SetBool(reloadState, true);
         shootingAnimator.Play(reloadAnimation);
         relaod.Invoke();
+    }
+
+    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
+    {
+        float time = 0;
+
+        Vector3 startPos = trail.transform.position;
+
+        while (time < 1)
+        {
+            trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+            time += (Time.deltaTime / trail.time);
+
+            yield return null;
+        }
+
+        trail.transform.position = hit.point;
+
+        Destroy(trail.gameObject, trail.time);
     }
 
     private void OnDrawGizmos()
